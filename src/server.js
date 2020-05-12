@@ -30,8 +30,5 @@ app.use((err, req, res) => {
   res.json('error');
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('listening at port 3000');
-});
 
 module.exports = app;
