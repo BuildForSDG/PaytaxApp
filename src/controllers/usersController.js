@@ -8,9 +8,17 @@ exports.home = (req, res) => {
   res.json('testing api');
 };
 
-exports.register = (req, res) => {
+exports.registeration = (req, res) => {
 // return payer Id by email
-  res.json('registraion in progress');
+// console.log(req.body);
+  const user = new User(req.body);
+  user.register().then((result) => {
+    res.json({
+      PaytaxId: result.taxPayerId
+    });
+  }).catch((err) => {
+    res.json(err);
+  });
 };
 exports.login = (req, res) => {
 // return token
