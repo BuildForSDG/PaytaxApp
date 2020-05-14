@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail');
@@ -24,7 +25,7 @@ exports.registeration = (req, res) => {
     sgMail
       .send(msg)
       .then((data) => {
-        console.log(data);
+        console.log('Registered successfully!');
       }, (error) => {
         console.error(error);
 

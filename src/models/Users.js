@@ -36,7 +36,8 @@ User.prototype.cleanUp = function () {
       state: this.data.state.trim().toLowerCase(),
       city: this.data.city.trim().toLowerCase()
     };
-  } else {
+  }
+  if (this.data.company === 'false') {
     // personal business account reg
     if (typeof (this.data.name) !== 'string') { this.data.name = ''; }
     if (typeof (this.data.address) !== 'string') { this.data.address = ''; }
@@ -51,7 +52,7 @@ User.prototype.cleanUp = function () {
     if (typeof (this.data.city) !== 'string') { this.data.city = ''; }
     // get rid of any bogus properties
     this.data = {
-      businessName: this.data.name.toLowerCase(),
+      businessName: this.data.name.trim().toLowerCase(),
       businessAddress: this.data.address.toLowerCase(),
       email: this.data.email.trim().toLowerCase(),
       phone: this.data.phone,
@@ -68,7 +69,56 @@ User.prototype.cleanUp = function () {
 
 User.prototype.validate = function () {
   return new Promise(async (resolve, reject) => {
-    // Only if username is valid then check to see if it's already taken
+    if (this.data.businessName === '') {
+      this.errors.push('You must provide a business name.');
+    }
+    // if (this.data.businessName !== '' && !validator.isAlpha(this.data.businessName)) {
+    //   this.errors.push('Business Name can only contain letters.');
+    // }
+    if (!validator.isEmail(this.data.email)) {
+      this.errors.push('You must provide a valid email address.');
+    }
+    if (this.data.password === '') {
+      this.errors.push('You must provide a password.');
+    }
+    if (this.data.password.length > 0 && this.data.password.length < 12) {
+      this.errors.push('Password must be at least 12 characters.');
+    }
+    if (this.data.password.length > 100) {
+      this.errors.push('Password cannot exceed 100 characters');
+    }
+    if (this.data.password.length > 30) {
+      this.errors.push('Password cannot exceed 30 characters');
+    }
+    if (this.data.businessAddress === '') {
+      this.errors.push('You must provide a business Address.');
+    }
+    if (this.data.phone === '') {
+      this.errors.push('You must provide a phone.');
+    }
+    if (this.data.phone !== '' && !validator.isInt(this.data.phone)) {
+      this.errors.push('Phone can only contain numbers.');
+    }
+    if (this.data.bvn === '') {
+      this.errors.push('You must provide a bvn.');
+    }
+    if (this.data.bvn !== '' && !validator.isInt(this.data.bvn)) {
+      this.errors.push('BVN  can only contain numbers.');
+    }
+    if (this.data.state === '') {
+      this.errors.push('You must provide a state.');
+    }
+    if (this.data.state !== '' && !validator.isAlpha(this.data.state)) {
+      this.errors.push('State can only contain letters.');
+    }
+    if (this.data.city === '') {
+      this.errors.push('You must provide a city.');
+    }
+    if (this.data.city !== '' && !validator.isAlpha(this.data.city)) {
+      this.errors.push('City can only contain letters.');
+    }
+
+    // Only if businessName is valid then check to see if it's already taken
     if (this.data.businessName.length > 2 && validator.isAlphanumeric(this.data.businessName)) {
       const businessNameExists = await usersCollection
         .findOne({ businessName: this.data.businessName });
