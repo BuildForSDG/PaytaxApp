@@ -6,8 +6,8 @@
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const md5 = require('md5');
+
 const usersCollection = require('../db').db().collection('users');
-// console.log(usersCollection);
 
 const User = function (data) {
   this.data = data;
@@ -15,7 +15,7 @@ const User = function (data) {
 };
 
 User.prototype.cleanUp = function () {
-  if (this.data.company) {
+  if (this.data.company === 'true') {
     // company account reg
     if (typeof (this.data.name) !== 'string') { this.data.name = ''; }
     if (typeof (this.data.address) !== 'string') { this.data.address = ''; }
