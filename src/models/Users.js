@@ -153,7 +153,11 @@ User.prototype.register = function () {
       const salt = bcrypt.genSaltSync(10);
       this.data.password = bcrypt.hashSync(this.data.password, salt);
       // upload to users collection
-      await usersCollection.insertOne(this.data);
+      try {
+        await usersCollection.insertOne(this.data);
+      } catch (error) {
+        reject(error);
+      }
 
       // send the paytax Id as an email
       User.sendMail({
