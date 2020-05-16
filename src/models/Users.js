@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // /* eslint-disable no-async-promise-executor */
 // /* eslint-disable no-useless-return */
 // /* eslint-disable func-names */
