@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const jwt = require('jsonwebtoken');
 const User = require('../models/Users');
@@ -8,9 +9,15 @@ exports.home = (req, res) => {
   res.json('testing api');
 };
 
-exports.register = (req, res) => {
-// return payer Id by email
-  res.json('registraion in progress');
+exports.registeration = (req, res) => {
+  const user = new User(req.body);
+  user.register().then((result) => {
+    res.json({
+      PaytaxId: result.taxPayerId
+    });
+  }).catch((err) => {
+    res.json(err);
+  });
 };
 exports.login = (req, res) => {
 // return token
