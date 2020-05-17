@@ -44,6 +44,7 @@
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.2.1",
     "mongodb": "^3.5.7",
+    "mongoose": "^5.9.9",
     "save": "^2.4.0",
     "validator": "^13.0.0"
   },
