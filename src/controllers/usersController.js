@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
-// const config = require("../config/auth.config");
+const config = require('../config/auth.config');
 const User = require('../models/Users');
 
 exports.home = (req, res) => {
@@ -47,10 +47,9 @@ exports.login = [
       });
     }
     // create access token
-    const token = jwt.sign({ id: user.id }, // config.secret,
-      {
-        expiresIn: 86400 // 24 hours
-      });
+    const token = jwt.sign({ id: user.id }, config.secret, {
+      expiresIn: 86400 // 24 hours
+    });
     return res.status(200).json({
       status: true,
       token,
