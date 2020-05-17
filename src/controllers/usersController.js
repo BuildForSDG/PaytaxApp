@@ -3,6 +3,7 @@
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+// const config = require("../config/auth.config");
 const User = require('../models/Users');
 
 exports.home = (req, res) => {
@@ -36,20 +37,25 @@ exports.login = [
         data: 'User not found'
       });
     }
-    // check password
-    const isUser = await bcrypt.compare(req.body.password, user.password);
-    if (!isUser) {
-      return res.status(400).json({
+    // check if password is valid
+    const isPasswordValid = await bcrypt.compareSync(req.body.password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
         status: false,
-        data: 'Wrong email or password'
+        token: null,
+        data: 'Invalid password'
       });
     }
+    // create access token
+    const token = jwt.sign({ id: user.id }, // config.secret,
+      {
+        expiresIn: 86400 // 24 hours
+      });
     return res.status(200).json({
       status: true,
+      token,
       data: user
     });
-    // return token
-    // return res.json('login in progress');
   }
 ];
 
