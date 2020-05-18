@@ -6,6 +6,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const config = require('../config/auth.config');
 const User = require('../models/Users');
+const usersCollection = require('../db').db('paytax').collection('users');
 
 exports.home = (req, res) => {
 // return payer Id by email
@@ -25,18 +26,20 @@ exports.registeration = (req, res) => {
 
 exports.login = [
   [
-    // username must be an email
-    check('email').isEmail().withMessage('Invalid email addres'),
-    // password must be at least 5 chars long
-    check('password').isLength({ min: 5 }).withMessage('Password must be at least 5 chars long')
+    // taxPayerId must be alphanumeric and at least 15 characters long
+    check('taxPayerId').isAlphanumeric().withMessage('Payer ID must be alphanumeric')
+      .isLength({ min: 10, max: 10 })
+      .withMessage('Tax Payer ID must be 10 chars long'),
+    // password must be at least 8 chars long
+    check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 chars long')
   ], async (req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ status: false, errors: errors.array() });
     }
-    const user = await User.findOne({
-      email: req.body.email
+    const user = await usersCollection.findOne({
+      taxPayerId: req.body.taxPayerId
     });
     if (!user) {
       return res.status(400).json({
