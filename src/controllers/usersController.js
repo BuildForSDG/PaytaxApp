@@ -76,6 +76,31 @@ exports.recovery = (req, res) => {
   res.json('recovery in progress');
 };
 
-exports.getUserData = (req, res) => {
-  res.json(`user information ${req.params.taxID}`);
-};
+exports.getUserData = [
+  [
+    // taxPayerId must be alphanumeric and at least 15 characters long
+    check('taxID').isAlphanumeric().withMessage('Payer ID must be alphanumeric')
+      .isLength({ min: 10, max: 10 })
+      .withMessage('Tax Payer ID must be 10 chars long')
+  ],
+  async (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ status: false, errors: errors.array() });
+    }
+    const user = await usersCollection.findOne({
+      taxPayerId: req.params.taxID
+    }, { password: 0, _id: 0 });
+    if (!user) {
+      return res.status(400).json({
+        status: false,
+        data: 'User not found'
+      });
+    }
+    return res.status(200).json({
+      status: true,
+      data: user
+    });
+  }
+];
