@@ -40,10 +40,13 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.4.1",
     "http-errors": "^1.7.3",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.2.1",
     "mongodb": "^3.5.7",
+    "mongoose": "^5.9.9",
+    "save": "^2.4.0",
     "validator": "^13.0.0"
   },
   "devDependencies": {

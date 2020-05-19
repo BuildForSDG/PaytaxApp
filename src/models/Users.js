@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-async-promise-executor */
