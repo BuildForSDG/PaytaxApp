@@ -79,7 +79,6 @@ exports.mustBeLoggedIn = (req, res, next) => {
       data: 'Sorry, you must provide a valid token.'
     });
   }
-  next();
 };
 
 exports.recovery = (req, res) => {
