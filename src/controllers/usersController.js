@@ -69,6 +69,16 @@ exports.login = [
 ];
 
 exports.mustBeLoggedIn = (req, res, next) => {
+  try {
+    req.apiUser = jwt.verify(req.body.token, config.secret);
+    console.log(req.apiUser);
+    next();
+  } catch (error) {
+    res.status(403).json({
+      status: false,
+      data: 'Sorry, you must provide a valid token.'
+    });
+  }
   next();
 };
 

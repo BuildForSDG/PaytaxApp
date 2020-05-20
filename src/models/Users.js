@@ -122,13 +122,6 @@ User.makeId = function (length) {
   }
   return result;
 };
-
-User.prototype.login = function () {
-  return new Promise((resolve, reject) => {
-
-  });
-};
-
 // static sendMAIL method
 User.sendMail = function (msg) {
   sgMail
@@ -171,10 +164,5 @@ User.prototype.register = function () {
   });
 };
 
-User.prototype.getUserByTaxID = function () {
-  return new Promise((resolve, reject) => {
-
-  });
-};
 
 module.exports = User;
