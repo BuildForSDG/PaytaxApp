@@ -1,7 +1,12 @@
+/* eslint-disable prefer-promise-reject-errors */
+/* eslint-disable no-async-promise-executor */
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
-const _ = require('lodash');
+const usersCollection = require('../db').db().collection('users');
+
+const paymentsCollection = require('../db').db().collection('payments');
 
 const Payments = function (data) {
   this.data = data;
@@ -9,19 +14,27 @@ const Payments = function (data) {
     this.data = false;
   }
 };
-Payments.addToHistory = function (refData) {
+Payments.addToHistory = function (refData, taxPayerId) {
   return new Promise((resolve, reject) => {
-  // const selectedData = _.at(refData, ['reference', 'amount', 'customer.email', 'metadata.full_name']);
-    const {
-      reference, amount, customer, metadata
-    } = refData;
     const selectedData = {
-      reference: refData.data.reference,
+      payment_reference: refData.data.reference,
       amount: (refData.data.amount / 100),
-      taxpayer: customer,
-      fullname: metadata
+      payment_date: refData.data.paid_at,
+      currency: refData.data.currency,
+      taxpayer: refData.data.metadata.full_name,
+      email: refData.data.customer.email,
+      tax_type: refData.data.metadata.tax_type
     };
-    resolve(refData);
+    usersCollection.findOne({ email: refData.data.customer.email }).then((user) => {
+      selectedData.taxPayerId = user.taxPayerId;
+      paymentsCollection.insertOne(selectedData).then((success) => {
+        resolve(success);
+      }).catch((err) => {
+        reject(err);
+      });
+    }).catch((err) => {
+
+    });
   });
 };
 

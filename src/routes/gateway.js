@@ -12,6 +12,6 @@ router.post('/pay', gatewayController.pay);
 
 router.get('/callback', gatewayController.verify);
 
-router.get('/receipt/:id', gatewayController.paymentHistory);
+// router.get('/receipt/:id', gatewayController.paymentHistory);
 
 module.exports = router;

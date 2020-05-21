@@ -10,13 +10,14 @@ const Paystack = function (data) {
   if (this.data == null) {
     this.data = false;
   }
-  this.key = 'sk_test_50c95c6d4ebb739f1e96963f0816b7a0eb0b5ca2';
-  this.MySecretKey = `Bearer ${this.key}`;
-  this.data = {
+
+  this.MySecretKey = `Bearer ${process.env.PAYSTACK_SECRET_KEY}`;
+  this.payData = {
     amount: this.data.amount *= 100,
     email: this.data.email,
     metadata: {
-      name: this.data.full_name
+      full_name: this.data.full_name,
+      tax_type: this.data.tax_type
     }
   };
 };
@@ -30,7 +31,7 @@ Paystack.prototype.initializePayment = function () {
         'content-type': 'application/json',
         'cache-control': 'no-cache'
       },
-      data: this.data
+      data: this.payData
     };
     await axios(options).then((response) => {
       resolve(response);
@@ -52,7 +53,10 @@ Paystack.prototype.verifyPayment = function (ref) {
       }
     };
     await axios(options).then((response) => {
-      resolve(response);
+      const data = {
+        response
+      };
+      resolve(data);
     }).catch((err) => {
       reject(err);
     });

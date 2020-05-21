@@ -24,9 +24,10 @@ exports.pay = (req, res) => {
 exports.verify = (req, res) => {
   const ref = req.query.reference;
   const paystack = new Gateway();
-  paystack.verifyPayment(ref).then((response) => {
-    const { data } = response;
-    Payments.addToHistory(data).then((status) => {
+  paystack.verifyPayment(ref).then((verification) => {
+    const { response } = verification;
+
+    Payments.addToHistory(response.data).then((status) => {
       console.log(status);
     }).catch((err) => {
       console.log(err);
@@ -38,9 +39,4 @@ exports.verify = (req, res) => {
       data: 'something is wrong,try again later'
     });
   });
-};
-
-exports.paymentHistory = (req, res) => {
-  // return payer Id by email
-  res.json(req.params.id);
 };
