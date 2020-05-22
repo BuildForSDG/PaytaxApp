@@ -28,12 +28,16 @@ exports.verify = (req, res) => {
     const { response } = verification;
 
     Payments.addToHistory(response.data).then((status) => {
-      console.log(status);
+      // redirect to dashbord
+      // propmpt to download the reciept
+
     }).catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        status: false,
+        data: 'something is wrong,try again later'
+      });
     });
   }).catch((err) => {
-    console.log(err);
     res.status(500).json({
       status: false,
       data: 'something is wrong,try again later'

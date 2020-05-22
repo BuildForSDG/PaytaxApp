@@ -8,7 +8,7 @@ const gatewayController = require('../controllers/gatewayController');
 router.use(cors());
 
 // protected routes
-router.post('/pay', gatewayController.pay);
+router.post('/pay', usersController.mustBeLoggedIn, gatewayController.pay);
 
 router.get('/callback', gatewayController.verify);
 

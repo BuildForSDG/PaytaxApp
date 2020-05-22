@@ -21,6 +21,7 @@ const Paystack = function (data) {
     }
   };
 };
+// initialize payment to the api
 Paystack.prototype.initializePayment = function () {
   return new Promise(async (resolve, reject) => {
     const options = {
@@ -41,6 +42,7 @@ Paystack.prototype.initializePayment = function () {
   });
 };
 
+// verify the payment reference for success or fail
 Paystack.prototype.verifyPayment = function (ref) {
   return new Promise(async (resolve, reject) => {
     const options = {
@@ -53,9 +55,7 @@ Paystack.prototype.verifyPayment = function (ref) {
       }
     };
     await axios(options).then((response) => {
-      const data = {
-        response
-      };
+      const data = { response };
       resolve(data);
     }).catch((err) => {
       reject(err);
