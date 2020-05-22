@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
@@ -15,11 +16,10 @@ exports.home = (req, res) => {
 
 exports.registeration = (req, res) => {
   const user = new User(req.body);
-  user.register().then((result) => {
-    res.json({
-      PaytaxId: result.taxPayerId
-    });
-  }).catch((err) => {
+  user.register().then((result) => res.status(200).json({
+    status: true,
+    PaytaxId: result.taxPayerId
+  })).catch((err) => {
     res.json(err);
   });
 };
@@ -57,7 +57,7 @@ exports.login = [
       });
     }
     // create access token
-    const token = jwt.sign({ id: user.id }, config.secret, {
+    const token = jwt.sign({ id: user.id }, process.env.JWTSECRET, {
       expiresIn: 86400 // 24 hours
     });
     return res.status(200).json({
@@ -69,9 +69,14 @@ exports.login = [
 ];
 
 exports.mustBeLoggedIn = (req, res, next) => {
+  let token = req.headers['x-access-token'] || req.headers.authorization || req.body.token;
+  // Express headers are auto converted to lowercase
+  if (token && token.startsWith('Bearer ')) {
+    // Remove Bearer from string
+    token = token.slice(7, token.length).trimLeft();
+  }
   try {
-    req.apiUser = jwt.verify(req.body.token, config.secret);
-    console.log(req.apiUser);
+    req.apiUser = jwt.verify(token, process.env.JWTSECRET);
     next();
   } catch (error) {
     res.status(403).json({

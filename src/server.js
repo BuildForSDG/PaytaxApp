@@ -6,7 +6,7 @@ const app = express();
 
 const usersRouter = require('./routes/users');
 // const paymentsRouter = require('./routes/payments');
-// const gatewayRouter = require('./routes/gateway');
+const gatewayRouter = require('./routes/gateway');
 
 
 app.use(express.json());
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 // api routes
 app.use('/api/v1/user', usersRouter);
 // app.use('/api/v1/payments', paymentsRouter);
-// app.use('/api/v1/gateways', gatewayRouter);
+app.use('/api/v1/gateway', gatewayRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
