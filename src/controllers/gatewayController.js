@@ -8,7 +8,6 @@ const Payments = require('../models/Payments');
 
 
 exports.pay = (req, res) => {
-  // console.log(req.body);
   const paystack = new Gateway(req.body);
   paystack.initializePayment().then((response) => {
     res.redirect(response.data.data.authorization_url);
@@ -21,12 +20,13 @@ exports.pay = (req, res) => {
   });
 };
 
+// verification callback
 exports.verify = (req, res) => {
   const ref = req.query.reference;
   const paystack = new Gateway();
   paystack.verifyPayment(ref).then((verification) => {
     const { response } = verification;
-
+    // add the reciepts to history
     Payments.addToHistory(response.data).then((status) => {
       // redirect to dashbord
       // propmpt to download the reciept

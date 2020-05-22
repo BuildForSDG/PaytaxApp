@@ -34,6 +34,7 @@ Paystack.prototype.initializePayment = function () {
       },
       data: this.payData
     };
+    // send request to the api endpoint
     await axios(options).then((response) => {
       resolve(response);
     }).catch((err) => {
@@ -54,6 +55,7 @@ Paystack.prototype.verifyPayment = function (ref) {
         'cache-control': 'no-cache'
       }
     };
+    // send request to the api endpoint
     await axios(options).then((response) => {
       const data = { response };
       resolve(data);
