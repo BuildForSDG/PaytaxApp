@@ -42,7 +42,10 @@ Payments.addToHistory = function (refData, taxPayerId) {
 // payment Get history method
 Payments.prototype.getHistory = function () {
   return new Promise((resolve, reject) => {
-    paymentsCollection.find({ taxPayerId: this.taxPayerID }).toArray().then((responses) => {
+    paymentsCollection.find(
+      { taxPayerId: this.taxPayerID },
+      { $sort: { payment_date: -1 } }
+    ).toArray().then((responses) => {
       const responseHistory = responses.map((response) => response);
       resolve(responseHistory);
     }).catch((err) => {
