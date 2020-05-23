@@ -8,10 +8,10 @@ const usersCollection = require('../db').db().collection('users');
 
 const paymentsCollection = require('../db').db().collection('payments');
 
-const Payments = function (data) {
-  this.data = data;
-  if (this.data == null) {
-    this.data = false;
+const Payments = function (taxPayerID) {
+  this.taxPayerID = taxPayerID;
+  if (this.taxPayerID == null) {
+    this.taxPayerID = false;
   }
 };
 Payments.addToHistory = function (refData, taxPayerId) {
@@ -27,6 +27,7 @@ Payments.addToHistory = function (refData, taxPayerId) {
     };
     usersCollection.findOne({ email: refData.data.customer.email }).then((user) => {
       selectedData.taxPayerId = user.taxPayerId;
+      selectedData.state = user.state;
       paymentsCollection.insertOne(selectedData).then((success) => {
         resolve(success);
       }).catch((err) => {
@@ -34,6 +35,18 @@ Payments.addToHistory = function (refData, taxPayerId) {
       });
     }).catch((err) => {
 
+    });
+  });
+};
+
+// payment Get history method
+Payments.prototype.getHistory = function () {
+  return new Promise((resolve, reject) => {
+    paymentsCollection.find({ taxPayerId: this.taxPayerID }).toArray().then((responses) => {
+      const responseHistory = responses.map((response) => response);
+      resolve(responseHistory);
+    }).catch((err) => {
+      reject('err');
     });
   });
 };
