@@ -28,9 +28,8 @@ exports.verify = (req, res) => {
     const { response } = verification;
     // add the reciepts to history
     Payments.addToHistory(response.data).then((status) => {
-      // redirect to dashbord
-      // propmpt to download the reciept
-
+      // redirect to dashboard
+      res.redirect('/');
     }).catch((err) => {
       res.status(500).json({
         status: false,

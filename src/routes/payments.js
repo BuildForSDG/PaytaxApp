@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 const router = require('express').Router();
 const cors = require('cors');
 const paymentsController = require('../controllers/paymentsController');
-const userController = require('../controllers/usersController');
+const usersController = require('../controllers/usersController');
 
 router.use(cors());
 
 
 router.get('/types', paymentsController.paymentTypes);
-router.get('/history:taxID', userController.mustBeLoggedIn, paymentsController.paymentHistory);
+router.get('/history/:taxPayerID', usersController.mustBeLoggedIn, paymentsController.paymentHistory);
+router.get('/receipt/:taxPayerID', paymentsController.paymentReceipt);
 
 module.exports = router;
