@@ -7,7 +7,8 @@ const usersController = require('../controllers/usersController');
 router.use(cors());
 
 
-router.get('/types', paymentsController.paymentTypes);
+router.get('/tax_types', usersController.mustBeLoggedIn, paymentsController.getTaxTypes);
+router.post('/tax_types', usersController.mustBeLoggedIn, paymentsController.addTaxTypes);
 router.get('/history/:taxPayerID', usersController.mustBeLoggedIn, paymentsController.paymentHistory);
 router.get('/receipt/:taxPayerID', paymentsController.paymentReceipt);
 

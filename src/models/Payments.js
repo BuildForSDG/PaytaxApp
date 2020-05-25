@@ -4,16 +4,23 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
+
 const usersCollection = require('../db').db().collection('users');
 
 const paymentsCollection = require('../db').db().collection('payments');
+
+const taxTypesCollection = require('../db').db().collection('taxtypes');
 
 const Payments = function (taxPayerID) {
   this.taxPayerID = taxPayerID;
   if (this.taxPayerID == null) {
     this.taxPayerID = false;
   }
+  this.errors = [];
+  this.taxType = null;
 };
+
+
 Payments.addToHistory = function (refData, taxPayerId) {
   return new Promise((resolve, reject) => {
     const selectedData = {
@@ -33,8 +40,6 @@ Payments.addToHistory = function (refData, taxPayerId) {
       }).catch((err) => {
         reject(err);
       });
-    }).catch((err) => {
-
     });
   });
 };
@@ -51,6 +56,50 @@ Payments.prototype.getHistory = function () {
     }).catch((err) => {
       reject('err');
     });
+  });
+};
+
+
+// get all other tax types asides the PIT tax
+Payments.getOtherTaxTypes = function () {
+  return new Promise((resolve, reject) => {
+    taxTypesCollection.find({}).toArray().then((docs) => {
+      const taxTypes = docs.map((doc) => doc);
+      resolve(taxTypes);
+    }).catch((err) => {
+      reject(err);
+    });
+  });
+};
+
+Payments.prototype.validate = function () {
+  return new Promise(async (resolve, reject) => {
+    this.taxType = {
+      name: this.taxType.name.trim().toLowerCase(),
+      type: this.taxType.type.trim().toUpperCase()
+    };
+    const taxNameExists = await taxTypesCollection
+      .findOne({ name: this.taxType.name });
+    if (taxNameExists) {
+      this.errors.push('This Tax name already exit.');
+    }
+    resolve();
+  });
+};
+// Add other tax types asides the PIT tax
+Payments.prototype.addOtherTaxTypes = async function (type) {
+  this.taxType = type;
+  await this.validate();
+
+  return new Promise(async (resolve, reject) => {
+    // if no errors
+    if (!this.errors.length) {
+      // upload to taxtypes colletion
+      await taxTypesCollection.insertOne(this.taxType);
+      resolve();
+    } else {
+      reject(this.errors);
+    }
   });
 };
 
