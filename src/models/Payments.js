@@ -4,7 +4,6 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
-const validator = require('validator');
 
 const usersCollection = require('../db').db().collection('users');
 
@@ -41,8 +40,6 @@ Payments.addToHistory = function (refData, taxPayerId) {
       }).catch((err) => {
         reject(err);
       });
-    }).catch((err) => {
-
     });
   });
 };
