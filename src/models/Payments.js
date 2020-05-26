@@ -61,10 +61,11 @@ Payments.sendReceipt = async function (selectedData) {
     <div>PaymentReference: ${selectedData.payment_reference}</div>
     <div>Amount paid: ${selectedData.amount}</div>
     <div>Payment Date: ${selectedData.payment_date}</div>
-    <div>currency: ${selectedData.currency}</div>
-    <div>Taxpayer: ${selectedData.taxpayer}</div>
+    <div>Currency: ${selectedData.currency}</div>
+    <div>Tax Payer: ${selectedData.taxpayer}</div>
     <div>Email: ${selectedData.email}</div>
-    <div>TaxPayerID: ${selectedData.taxPayerId}</div>
+    <div>Tax Payer ID: ${selectedData.taxPayerId}</div>
+    <div>Tax Type: ${selectedData.tax_type}</div>
     `
   };
   await User.sendMail(msg);

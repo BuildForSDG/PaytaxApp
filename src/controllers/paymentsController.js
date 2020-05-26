@@ -70,7 +70,7 @@ exports.paymentHistory = function (req, res) {
   });
 };
 
-//  get downloadable receipt from taxPayerID
+//  get  receipt from taxPayerID
 exports.paymentReceipt = function (req, res) {
   const { taxPayerID, paymentDate } = req.query;
 

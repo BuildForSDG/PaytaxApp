@@ -115,6 +115,30 @@ Request format:
 	"tax_type": "PIT"
 }`
 
+****
+
+**Payment Receipt  **
+
+- Create Payment Receipt.
+
+- Send receipt to the client as HTTP response.
+
+- Email taxpayer a receipt after a successful transaction.
+
+- Get taxpayer Receipt by taxPayerID and paymentDate.
+
+`GET`   https://paytax-app.herokuapp.com/api/v1/payments/receipt/
+
+Request format: 
+
+Accepts two query parameters:
+
+```javascript
+const { taxPayerID, paymentDate } = req.query;
+```
+
+
+
 ## Setup
 
 Install `npm` or `yarn` if you dont have any of them already installed. We recommend Yarn though.
