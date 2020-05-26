@@ -125,22 +125,11 @@ Request format:
 
 - Create Payment Receipt.
 
-
-
-
 - Send receipt to the client as HTTP response.
-
-
-
 
 - Email taxpayer a receipt after a successful transaction.
 
-
-
-
 - Get taxpayer Receipt by taxPayerID and paymentDate.
-
-
 
 `GET`   <https://paytax-app.herokuapp.com/api/v1/payments/receipt?taxPayerID=&paymentDate>
 
@@ -162,48 +151,34 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 
 ## Hints
 
-
 - Run `npm install` or `yarn install` to get started. We'll assume you are using Yarn.
-
 
 - Install additional dependencies: `yarn add <dependency-name> [-D]`
 
-
 - Run tests: `yarn test`
-
 
 - Run tests with test coverage info: `yarn test:cover`
 
-
 - Check the codebase for proper syntax and formatting compliance: `yarn lint`
-
 
 - Run your app in local dev mode: `yarn start`. This puts the bundled app in a `dist` folder, set up a local web server at localhost:3000, and continues to watch for your code changes which it syncs with the local server. This means if you loaded the app in a browser, it will auto-refresh as you code along. Feel free to use whatever bundler best meets your needs. Parcel was only added as a sample and for those looking for a simple but effective solution to the hassle of bundlers.
 
 ## Authors
 
-Peterson Oaikhenah  (TTL)
-
 ![website](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb](<https://github.com/nextwebb> "github profile")
 ![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/nextwebb> "portfolio website")
 ![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[i_am_nextwebb](<https://twitter.com/i_am_nextwebb> "twitter profile")
 
-Ben Kovie
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ben Kovie](<https://github.com/ben-kovie> "github profile")
 
-Chika Ani
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Chika Ani](<https://github.com/casmonas> "github profile")
 
-Oluwaseun Olorunsola (Mentor)
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[triple0t](<https://github.com/triple0t> "github profile")
 
-Daniel Ufeli
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Daniel Ufeli](<https://github.com/danielufeli> "github profile")
 
-Sammiepius
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Sammiepius](<https://github.com/sammiepius> "github profile")
 
-Gospel Chinyereugo
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ebugo](<https://github.com/Ebugo> "github profile")
 
 ## Contributing
@@ -213,15 +188,9 @@ First, you can send a mail to buildforsdg@andela.com to indicate your interest, 
 
 1. area one (e.g this app is about human trafficking and you need feedback on your roadmap and feature list from the private sector / NGOs)
 
-
-
 2. area two (e.g you want people to opt-in and try using your staging app at staging.project-name.com and report any bugs via a form)
 
-
-
 3. area three (e.g here is the zoom link to our end-of sprint webinar, join and provide feedback as a stakeholder if you can)
-
-
 
 ## Acknowledgements
 
