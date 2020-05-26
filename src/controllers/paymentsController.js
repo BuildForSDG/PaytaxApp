@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
-const User = require('../models/Users');
-const Gateway = require('../models/Gateway');
 const Payments = require('../models/Payments');
 
 //  calls the getTaxTypes methods
@@ -41,7 +39,7 @@ exports.addTaxTypes = function (req, res) {
   }).catch((err) => {
     res.status(400).json({
       status: false,
-      data: err
+      data: 'Bad Request'
     });
   });
 };
@@ -64,15 +62,28 @@ exports.paymentHistory = function (req, res) {
       });
     }
   }).catch((err) => {
+    // bad request
     res.status(400).json({
       status: false,
-      data: err
+      data: 'Bad Request'
     });
   });
 };
 
+//  get  receipt from taxPayerID
 exports.paymentReceipt = function (req, res) {
-  return new Promise((resolve, reject) => {
+  const { taxPayerID, paymentDate } = req.query;
 
+  const payments = new Payments(taxPayerID, paymentDate);
+  payments.getReceipt().then((receipt) => {
+    res.status(200).json({
+      status: true,
+      data: receipt
+    });
+  }).catch((err) => {
+    res.status(400).json({
+      status: false,
+      data: 'Bad Request'
+    });
   });
 };
