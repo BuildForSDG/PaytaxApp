@@ -10,13 +10,13 @@ This Application aims to enhance the process of tax collection with a platform t
 
 - Tax payers can easily pay tax from the comfort of the their business locations and offices.
 - People don't have to queue up at offices to pay tax.
-- The government can save operational cost of sending tax agents to business locations and offices. 
+- The government can save operational cost of sending tax agents to business locations and offices.
 - We're essentially functioning as a third party service, we can deduct a token for the service charge.
 - Easily get tax receipts.
 
 ## Usage
 
-### API guide for consuming this back-end layer.
+### API guide for consuming this back-end layer
 
 **Individual businesses and Companies registration.**
 Upon registration the Tax payer gets returned a Tax Payer ID by email and json response.
