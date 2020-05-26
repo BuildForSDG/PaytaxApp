@@ -123,23 +123,16 @@ Request format:
 
 ## Payment Receipt
 
-
 - Create Payment Receipt.
-
 
 
 - Send receipt to the client as HTTP response.
 
 
-
-
 - Email taxpayer a receipt after a successful transaction.
 
 
-
-
 - Get taxpayer Receipt by taxPayerID and paymentDate.
-
 
 
 `GET`   <https://paytax-app.herokuapp.com/api/v1/payments/receipt?taxPayerID=&paymentDate>
@@ -214,9 +207,7 @@ First, you can send a mail to buildforsdg@andela.com to indicate your interest, 
 1. area one (e.g this app is about human trafficking and you need feedback on your roadmap and feature list from the private sector / NGOs)
 
 
-
 2. area two (e.g you want people to opt-in and try using your staging app at staging.project-name.com and report any bugs via a form)
-
 
 
 3. area three (e.g here is the zoom link to our end-of sprint webinar, join and provide feedback as a stakeholder if you can)
