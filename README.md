@@ -1,4 +1,4 @@
-#  PayTax App
+#  #PayTax App
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21fe87768d424c2e85b089afea2f2084)](https://app.codacy.com/gh/BuildForSDG/PayTax-app?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/PayTax-app&utm_campaign=Badge_Grade_Settings)
 
@@ -142,7 +142,7 @@ Peterson Oaikhenah  (TTL)
 <img src="https://img.icons8.com/fluent/48/000000/twitter.png"/>[I_am_nextwebb](https://twitter.com/i_am_nextwebb "twitter profile")
 
 Ben Kovie
-<img src="https://img.icons8.com/cute-clipart/64/000000/github.png"/>[Ben Kovie](https://github.com/ben_kovie "")
+<img src="https://img.icons8.com/cute-clipart/64/000000/github.png"/>[Ben Kovie](https://github.com/ben-kovie "")
 
 Chika Ani
 <img src="https://img.icons8.com/cute-clipart/64/000000/github.png"/>[Chika Ani](https://github.com/casmonas "")
@@ -155,6 +155,9 @@ Daniel Ufeli
 
 Sammiepius
 <img src="https://img.icons8.com/cute-clipart/64/000000/github.png"/>[Sammiepius](https://github.com/sammiepius "")
+
+Gospel Chinyereugo
+<img src="https://img.icons8.com/cute-clipart/64/000000/github.png"/>[Ebugo](https://github.com/Ebugo "")
 
 
 
