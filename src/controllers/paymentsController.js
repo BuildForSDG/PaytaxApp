@@ -83,7 +83,7 @@ exports.paymentReceipt = function (req, res) {
   }).catch((err) => {
     res.status(400).json({
       status: false,
-      data: err
+      data: 'Bad Request'
     });
   });
 };

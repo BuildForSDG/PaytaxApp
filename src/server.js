@@ -21,14 +21,19 @@ app.use('/api/v1/gateway', gatewayRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  next(res.status(400).json({
+    status: false,
+    data: 'Bad request'
+  }));
 });
 
 // error handler
 app.use((err, req, res) => {
   // render the error page
-  res.status(err.status || 500);
-  res.json('error');
+  res.status(err.status || 500).json({
+    status: false,
+    data: 'internal server error'
+  });
 });
 
 

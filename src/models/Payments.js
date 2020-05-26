@@ -14,7 +14,6 @@ const taxTypesCollection = require('../db').db().collection('taxtypes');
 const Payments = function (taxPayerID, paymentDate) {
   this.taxPayerID = taxPayerID;
   this.paymentDate = paymentDate;
-  this.taxPayerID.trim();
   if (this.taxPayerID == null) {
     this.taxPayerID = false;
   }
@@ -74,6 +73,7 @@ Payments.sendReceipt = async function (selectedData) {
 // payment Get history method
 Payments.prototype.getHistory = function () {
   return new Promise((resolve, reject) => {
+    this.taxPayerID.trim();
     paymentsCollection.find(
       { taxPayerId: this.taxPayerID },
       { $sort: { payment_date: -1 } }
