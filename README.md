@@ -100,7 +100,7 @@ Return all tax payment transactions performed using this payment service. this i
 
 ****
 
-**Integrate Payment gateway.**
+## Integrate Payment gateway
 
  This is a protected route, so a user needs to be authenticated.
 
@@ -133,7 +133,6 @@ Request format:
 
 
 - Get taxpayer Receipt by taxPayerID and paymentDate.
-
 
 `GET`   <https://paytax-app.herokuapp.com/api/v1/payments/receipt?taxPayerID=&paymentDate>
 
@@ -176,27 +175,27 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 
 Peterson Oaikhenah  (TTL)
 
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb](<https://github.com/nextwebb> "")
-![alt](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/nextwebb> "portfolio website")
-![alt](<https://img.icons8.com/fluent/48/000000/twitter.png>)[i_am_nextwebb](https://twitter.com/i_am_nextwebb "twitter profile")
+![website](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb](<https://github.com/nextwebb> "github profile")
+![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/nextwebb> "portfolio website")
+![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[i_am_nextwebb](<https://twitter.com/i_am_nextwebb> "twitter profile")
 
 Ben Kovie
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb][Ben Kovie](<https://github.com/ben-kovie> "")
+![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ben Kovie](<https://github.com/ben-kovie> "github profile")
 
 Chika Ani
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb][Chika Ani](<https://github.com/casmonas> "")
+![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Chika Ani](<https://github.com/casmonas> "github profile")
 
 Oluwaseun Olorunsola (Mentor)
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb][triple0t](<https://github.com/triple0t> "")
+![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[triple0t](<https://github.com/triple0t> "github profile")
 
 Daniel Ufeli
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb][Daniel Ufeli](<https://github.com/danielufeli> "")
+![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Daniel Ufeli](<https://github.com/danielufeli> "github profile")
 
 Sammiepius
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb][Sammiepius](<https://github.com/sammiepius> "")
+![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Sammiepius](<https://github.com/sammiepius> "github profile")
 
 Gospel Chinyereugo
-![alt](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb][Ebugo](<https://github.com/Ebugo> "")
+![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ebugo](<https://github.com/Ebugo> "github profile")
 
 ## Contributing
 
@@ -205,7 +204,9 @@ First, you can send a mail to buildforsdg@andela.com to indicate your interest, 
 
 1. area one (e.g this app is about human trafficking and you need feedback on your roadmap and feature list from the private sector / NGOs)
 
+
 2. area two (e.g you want people to opt-in and try using your staging app at staging.project-name.com and report any bugs via a form)
+
 
 3. area three (e.g here is the zoom link to our end-of sprint webinar, join and provide feedback as a stakeholder if you can)
 
