@@ -123,6 +123,7 @@ Request format:
 
 ## Payment Receipt
 
+
 - Create Payment Receipt.
 
 
@@ -153,6 +154,7 @@ After clonning the repo to your local machine and moving into the cloned folder,
 All tests should be written in the `__tests__' folder. There's a sample in there.
 
 ## Hints
+
 
 - Run `npm install` or `yarn install` to get started. We'll assume you are using Yarn.
 
