@@ -39,7 +39,7 @@ exports.addTaxTypes = function (req, res) {
   }).catch((err) => {
     res.status(400).json({
       status: false,
-      data: err
+      data: 'Bad Request'
     });
   });
 };
@@ -65,7 +65,7 @@ exports.paymentHistory = function (req, res) {
     // bad request
     res.status(400).json({
       status: false,
-      data: err
+      data: 'Bad Request'
     });
   });
 };
