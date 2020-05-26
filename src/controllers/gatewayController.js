@@ -1,8 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-const jwt = require('jsonwebtoken');
-const User = require('../models/Users');
 const Gateway = require('../models/Gateway');
 const Payments = require('../models/Payments');
 
@@ -13,7 +11,7 @@ exports.pay = (req, res) => {
     res.redirect(response.data.data.authorization_url);
     console.log(response.data.data.authorization_url);
   }).catch((err) => {
-    res.status(500).json({
+    res.status(400).json({
       status: false,
       data: err
     });
@@ -28,18 +26,13 @@ exports.verify = (req, res) => {
     const { response } = verification;
     // add the reciepts to history
     Payments.addToHistory(response.data).then((status) => {
-      // redirect to dashboard
-      res.redirect('/');
+      // redirect to payment receipt
+      res.redirect(`/api/v1/payments/receipt?taxPayerID=${status.taxPayerId}&paymentDate=${status.payment_date}`);
     }).catch((err) => {
-      res.status(500).json({
+      res.status(400).json({
         status: false,
-        data: 'something is wrong,try again later'
+        data: err
       });
-    });
-  }).catch((err) => {
-    res.status(500).json({
-      status: false,
-      data: 'something is wrong,try again later'
     });
   });
 };

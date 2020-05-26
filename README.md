@@ -111,7 +111,8 @@ Request format:
 `{
 	"name":"dickson douglas",
 	"amount":"3000",
-	"email":"ricknet@gmail.com"
+	"email":"ricknet@gmail.com",
+	"tax_type": "PIT"
 }`
 
 ## Setup

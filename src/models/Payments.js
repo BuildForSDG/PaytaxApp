@@ -4,44 +4,70 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
-
+const User = require('./Users');
 const usersCollection = require('../db').db().collection('users');
 
 const paymentsCollection = require('../db').db().collection('payments');
 
 const taxTypesCollection = require('../db').db().collection('taxtypes');
 
-const Payments = function (taxPayerID) {
+const Payments = function (taxPayerID, paymentDate) {
   this.taxPayerID = taxPayerID;
+  this.paymentDate = paymentDate;
+  this.taxPayerID.trim();
   if (this.taxPayerID == null) {
     this.taxPayerID = false;
+  }
+  if (this.paymentDate == null) {
+    this.paymentDate = false;
   }
   this.errors = [];
   this.taxType = null;
 };
 
 
-Payments.addToHistory = function (refData, taxPayerId) {
+Payments.addToHistory = function (refData) {
   return new Promise((resolve, reject) => {
     const selectedData = {
       payment_reference: refData.data.reference,
       amount: (refData.data.amount / 100),
-      payment_date: refData.data.paid_at,
+      payment_date: refData.data.paid_at.replace('.000Z', ' ').trim(),
       currency: refData.data.currency,
       taxpayer: refData.data.metadata.full_name,
       email: refData.data.customer.email,
       tax_type: refData.data.metadata.tax_type
     };
-    usersCollection.findOne({ email: refData.data.customer.email }).then((user) => {
+    usersCollection.findOne({ email: selectedData.email }).then((user) => {
       selectedData.taxPayerId = user.taxPayerId;
       selectedData.state = user.state;
       paymentsCollection.insertOne(selectedData).then((success) => {
-        resolve(success);
+        resolve(selectedData);
+        Payments.sendReceipt(selectedData);
       }).catch((err) => {
         reject(err);
       });
     });
   });
+};
+
+Payments.sendReceipt = async function (selectedData) {
+  let msg = selectedData;
+  msg = {
+    to: `${selectedData.email}`,
+    from: 'contact@app.paytax.com',
+    subject: 'Payment Receipt',
+    text: 'Transaction Successful!',
+    html: `
+    <div>PaymentReference: ${selectedData.payment_reference}</div>
+    <div>Amount paid: ${selectedData.amount}</div>
+    <div>Payment Date: ${selectedData.payment_date}</div>
+    <div>currency: ${selectedData.currency}</div>
+    <div>Taxpayer: ${selectedData.taxpayer}</div>
+    <div>Email: ${selectedData.email}</div>
+    <div>TaxPayerID: ${selectedData.taxPayerId}</div>
+    `
+  };
+  await User.sendMail(msg);
 };
 
 // payment Get history method
@@ -100,6 +126,31 @@ Payments.prototype.addOtherTaxTypes = async function (type) {
     } else {
       reject(this.errors);
     }
+  });
+};
+
+// Get payment reciept
+Payments.prototype.getReceipt = function () {
+  return new Promise(async (resolve, reject) => {
+    paymentsCollection.find(
+      {
+        taxPayerId: this.taxPayerID,
+        payment_date: this.paymentDate
+      }
+    ).toArray().then((data) => {
+      const receipts = data.map((receipt) => ({
+        payment_reference: receipt.payment_reference,
+        amount: receipt.amount,
+        payment_date: receipt.payment_date,
+        currency: receipt.currency,
+        taxpayer: receipt.taxpayer,
+        email: receipt.email,
+        taxPayerId: receipt.taxPayerId
+      }));
+      resolve(receipts);
+    }).catch((err) => {
+      reject(err);
+    });
   });
 };
 
