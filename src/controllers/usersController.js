@@ -5,6 +5,7 @@
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const sgMail = require('@sendgrid/mail');
 const config = require('../config/auth.config');
 const User = require('../models/Users');
 const usersCollection = require('../db').db('paytax').collection('users');
@@ -40,7 +41,7 @@ exports.login = [
     }
     const user = await usersCollection.findOne({
       taxPayerId: req.body.taxPayerId
-    });
+    }, { password: 0, _id: 0 });
     if (!user) {
       return res.status(400).json({
         status: false,
@@ -86,9 +87,60 @@ exports.mustBeLoggedIn = (req, res, next) => {
   }
 };
 
-exports.recovery = (req, res) => {
-  res.json('recovery in progress');
-};
+exports.recovery = [
+  [
+    // taxPayerId must be alphanumeric and at least 15 characters long
+    check('taxPayerId').isAlphanumeric().withMessage('Payer ID must be alphanumeric')
+      .isLength({ min: 10, max: 10 })
+      .withMessage('Tax Payer ID must be 10 chars long')
+  ], async (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ status: false, errors: errors.array() });
+    }
+    const user = await usersCollection.findOne({
+      taxPayerId: req.body.taxPayerId
+    });
+    if (!user) {
+      return res.status(400).json({
+        status: false,
+        data: 'User not found'
+      });
+    }
+    // create recovery token
+    const token = jwt.sign({ id: user.id }, config.secret, {
+      expiresIn: 7200 // 2 hours
+    });
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+      to: `${user.email}`,
+      from: 'contact@app.paytax.com',
+      subject: 'PayTax APP Account Recovery',
+      text: 'Pay your tax anywhere with app.paytax.com',
+      html: `
+        <pre><h1> PayTax account recovery request </h1>
+        Hello ${user.businessName},
+        
+        We received a request to use PayTax APP Account Recovery to regain access to your account. To continue, click this link:
+        
+        <a href="https://paytaxapp.com/${token}"> Start LastPass Account Recovery </a>
+        
+        The link expires in 2 hours.
+        
+        If the link doesn't work, visit this site by copying this address to your browser:
+        
+        https://paytaxapp.com/${token} </pre>
+      `
+    };
+    sgMail.send(msg);
+    return res.status(200).json({
+      status: true,
+      data: 'Message sent'
+    });
+  }
+];
 
 exports.getUserData = [
   [
