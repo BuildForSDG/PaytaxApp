@@ -127,7 +127,7 @@ User.sendMail = function (msg) {
   sgMail
     .send(msg)
     .then((data) => {
-      console.log('Registered successfully!');
+      console.log('Email sent  successfully!');
     }, (error) => {
       console.error(error);
 
@@ -164,5 +164,22 @@ User.prototype.register = function () {
   });
 };
 
+User.recovery = function () {
+  return new Promise((resolve, reject) => {
+    // check if email exists in users collection
+  });
+};
+User.generateLink = function () {
+  return new Promise((resolve, reject) => {
+    // generate a reset token
+    // using jwt
+    // generate a link
+    // send mail
+  });
+};
+User.changePassword = function () {
+  return new Promise((resolve, reject) => {
+  });
+};
 
 module.exports = User;

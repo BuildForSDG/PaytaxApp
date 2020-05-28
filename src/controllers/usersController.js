@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-undef */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
@@ -118,3 +119,20 @@ exports.getUserData = [
     });
   }
 ];
+
+exports.recovery = function (req, res) {
+  const { email } = req.body;
+  User.recovery(email).then((userExists) => {
+
+  }).catch((err) => {
+
+  });
+};
+// middleware
+exports.recoveryLink = function (req, res) {
+  const { token } = req.params;
+  if (!token) {
+    return;
+  }
+  // confirm token
+};
