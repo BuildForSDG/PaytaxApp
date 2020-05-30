@@ -147,7 +147,7 @@ exports.paymentIncomeTax = [
         }
       }
       incomeBalance = income - q[5];
-      taxPayable.forEach(tpi => {
+      taxPayable.forEach((tpi) => {
         totalTaxPayable += tpi;
       });
       if (incomeBalance < 0) {
