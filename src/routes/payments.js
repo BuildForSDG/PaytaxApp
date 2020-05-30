@@ -13,6 +13,8 @@ router.post('/tax_types', usersController.mustBeLoggedIn, paymentsController.add
 
 router.get('/history/:taxPayerID', usersController.mustBeLoggedIn, paymentsController.paymentHistory);
 
+router.post('/payment_income_tax', usersController.mustBeLoggedIn, paymentsController.paymentIncomeTax);
+
 // insecure routes needs to be protected
 router.get('/receipt', paymentsController.paymentReceipt);
 
