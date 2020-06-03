@@ -212,7 +212,7 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 ## Authors
 
 ![website](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb](<https://github.com/nextwebb> "github profile")
-![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/nextwebb> "portfolio website")
+![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/> "portfolio website")
 ![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[i_am_nextwebb](<https://twitter.com/i_am_nextwebb> "twitter profile")
 
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ben Kovie](<https://github.com/ben-kovie> "github profile")
@@ -226,8 +226,8 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Sammiepius](<https://github.com/sammiepius> "github profile")
 
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ebugo](<https://github.com/Ebugo> "github profile")
-![website](<https://img.icons8.com/fluent/64/000000/globe.png>)[Portfolio](<https://gospel-chinyereugo.netlify.com/> "portfolio website")
-![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[Codebug_](<https://twitter.com/Codebug_> "twitter profile")
+[![website](<https://img.icons8.com/fluent/64/000000/globe.png>)](<https://gospel-chinyereugo.netlify.com/> "portfolio website")
+[![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)][Codebug_](<https://twitter.com/Codebug_> "twitter profile")
 
 ## Contributing
 
