@@ -99,7 +99,7 @@ BODY:
 }`
 
 PARAM:
-token : token
+`token : token`
 
 ****
 
@@ -226,7 +226,7 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Sammiepius](<https://github.com/sammiepius> "github profile")
 
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ebugo](<https://github.com/Ebugo> "github profile")
-[Portfolio](<https://gospel-chinyereugo.netlify.com/> "portfolio website")
+![website](<https://img.icons8.com/fluent/64/000000/globe.png>)[Portfolio](<https://gospel-chinyereugo.netlify.com/> "portfolio website")
 ![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[Codebug_](<https://twitter.com/Codebug_> "twitter profile")
 
 ## Contributing
