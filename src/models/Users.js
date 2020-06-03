@@ -28,6 +28,7 @@ User.prototype.cleanUp = function () {
     email: this.data.email.trim().toLowerCase(),
     phone: this.data.phone,
     bvn: this.data.bvn,
+    payableIncomeTax: this.data.payableIncomeTax,
     password: this.data.password,
     state: this.data.state.trim().toLowerCase(),
     city: this.data.city.trim().toLowerCase()
