@@ -92,6 +92,43 @@ exports.paymentReceipt = function (req, res) {
   });
 };
 
+const calculatePIT = (income) => {
+  const q = [300000, 300000, 500000, 500000, 1600000, 3200000];
+  const rate = [0.07, 0.11, 0.15, 0.19, 0.21, 0.24];
+  const taxPayable = [];
+  let totalTaxPayable = 0;
+  let incomeBalance = income - q[0];
+  taxPayable.push(Math.trunc(q[0] * rate[0]));
+  if (incomeBalance <= 0) {
+    totalTaxPayable = income * rate[0];
+    return totalTaxPayable;
+  }
+  for (let i = 1; i < q.length - 1; i++) {
+    incomeBalance -= q[i];
+    taxPayable.push(Math.trunc(q[i] * rate[i]));
+    if (incomeBalance <= 0) {
+      let incomeStat;
+      for (let j = 0; j < i; j++) {
+        incomeStat = income - q[j];
+      }
+      totalTaxPayable = (incomeStat) * rate[i];
+      for (let k = 0; k < taxPayable.length - 1; k++) {
+        totalTaxPayable += taxPayable[k];
+      }
+      return totalTaxPayable;
+    }
+  }
+  incomeBalance = income - q[5];
+  taxPayable.forEach((tpi) => {
+    totalTaxPayable += tpi;
+  });
+  if (incomeBalance < 0) {
+    return totalTaxPayable;
+  }
+  totalTaxPayable += Math.trunc(incomeBalance * rate[5]);
+  return totalTaxPayable;
+};
+
 exports.paymentIncomeTax = [
   [
     // taxPayerId must be alphanumeric and at least 15 characters long
@@ -111,50 +148,17 @@ exports.paymentIncomeTax = [
     }
     try {
       const { income } = req.body;
-      const user = await usersCollection.findOne({
-        taxPayerId: req.body.taxPayerId
-      }, { password: 0, _id: 0 });
+      const totalTaxPayable = calculatePIT(income);
+      // update user payable income tax field
+      const user = await usersCollection.findOneAndUpdate({ taxPayerId: req.body.taxPayerId },
+        { $set: { paymentIncomeTax: totalTaxPayable } });
       if (!user) {
         return res.status(400).json({
           status: false,
           data: 'User not found'
         });
       }
-      console.log('calculating');
-      const q = [300000, 300000, 500000, 500000, 1600000, 3200000];
-      const rate = [0.07, 0.11, 0.15, 0.19, 0.21, 0.24];
-      const taxPayable = [];
-      let totalTaxPayable = 0;
-      let incomeBalance = income - q[0];
-      taxPayable.push(Math.trunc(q[0] * rate[0]));
-      if (incomeBalance <= 0) {
-        totalTaxPayable = income * rate[0];
-        return res.json({ status: true, data: totalTaxPayable });
-      }
-      for (let i = 1; i < q.length - 1; i++) {
-        incomeBalance -= q[i];
-        taxPayable.push(Math.trunc(q[i] * rate[i]));
-        if (incomeBalance <= 0) {
-          let incomeStat;
-          for (let j = 0; j < i; j++) {
-            incomeStat = income - q[j];
-          }
-          totalTaxPayable = (incomeStat) * rate[i];
-          for (let k = 0; k < taxPayable.length - 1; k++) {
-            totalTaxPayable += taxPayable[k];
-          }
-          return res.json({ status: true, data: totalTaxPayable });
-        }
-      }
-      incomeBalance = income - q[5];
-      taxPayable.forEach((tpi) => {
-        totalTaxPayable += tpi;
-      });
-      if (incomeBalance < 0) {
-        return res.json({ status: true, data: totalTaxPayable });
-      }
-      totalTaxPayable += Math.trunc(incomeBalance * rate[5]);
-      return res.json({ status: true, data: totalTaxPayable });
+      return res.json({ status: true, data: "User's payable income tax updated successfully" });
     } catch (error) {
       return res.status(400).json({
         status: false,

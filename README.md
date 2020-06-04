@@ -70,6 +70,36 @@ Request format:
 "taxID":"SyNcnrmKJy",
 "password":"password123456"
 }`
+****
+
+## Individual businesses and Companies password recovery
+
+This request upon  finding the user via his/her tax payers ID sends a recovery mail to the tax payer which contains a token unique to that user or error messages if not authenticated.
+
+`POST`  <https://paytax-app.herokuapp.com/api/v1/user/recovery>
+
+Request format:
+
+`{
+  "taxPayerId": "jCaKiKWpLy"
+}`
+****
+
+## Individual businesses and Companies password reset
+
+This request upon  Authentication of the token sent via a recovery mail to the tax payer resets the tax payer's password to the new one or error messages.
+
+`POST`  <https://paytax-app.herokuapp.com/api/v1/user/change-password?token=:token>
+
+Request format:
+BODY:
+`{
+  "password": "password",
+  "confirmPassword": "password"
+}`
+
+PARAM:
+`token : token`
 
 ****
 
@@ -139,6 +169,22 @@ Accepts two query parameters:
 const { taxPayerID, paymentDate } = req.query;
 ```
 
+****
+
+## Calculate User's Payable Income Tax
+
+- Calculate the total payable income tax from user's income per annum.
+
+- Update user's info with calculated tax.
+
+`POST`   <https://paytax-app.herokuapp.com/api/v1/payments/payment_income_tax>
+
+Accepts two body parameters:
+
+```javascript
+const { income, taxPayerId } = req.body;
+```
+
 ## Setup
 
 Install `npm` or `yarn` if you dont have any of them already installed. We recommend Yarn though.
@@ -166,7 +212,7 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 ## Authors
 
 ![website](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb](<https://github.com/nextwebb> "github profile")
-![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/nextwebb> "portfolio website")
+![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/> "portfolio website")
 ![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[i_am_nextwebb](<https://twitter.com/i_am_nextwebb> "twitter profile")
 
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ben Kovie](<https://github.com/ben-kovie> "github profile")
@@ -179,7 +225,9 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 
 ![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Sammiepius](<https://github.com/sammiepius> "github profile")
 
-![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ebugo](<https://github.com/Ebugo> "github profile")
+[![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)](<https://github.com/Ebugo> "github profile")
+[![website](<https://img.icons8.com/fluent/64/000000/globe.png>)](<https://gospel-chinyereugo.netlify.com/> "portfolio website")
+[![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)](<https://twitter.com/Codebug_> "twitter profile") Gospel Chinyerugo (Codebug)
 
 ## Contributing
 
