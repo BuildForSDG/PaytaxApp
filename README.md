@@ -58,7 +58,22 @@ Upon registration the Tax payer gets returned a Tax Payer ID by email and json r
 
 Request format: Individual business
 
-`{ "company":"false", "name":"dougals", "address":"lagos", "email":"rickpeterson@gmail.com", "phone":"09060016252", "bvn":"124214141235", "password":"wqdsafdsfds242153", "state":"lagos", "city":"laten town" }`
+
+`{
+    "company": "false",
+    "name": "luisfiago cooperation",
+    "address": "lagos",
+    "email": "luisfiago@gmail.com",
+    "maritalStatus": "single",
+    "phone": "09060016252",
+    "gender": "male",
+    "birthDate": "12-01-80",
+    "bvn": "124214141235",
+    "password": "password123456",
+    "state": "lagos berlin",
+    "city": "laten lotus"
+}`
+
 
 Request format: Company
 
@@ -80,7 +95,9 @@ Request format:
 
 ## Individual businesses and Companies password recovery
 
-This request upon finding the user via his/her tax payers ID sends a recovery mail to the tax payer which contains a token unique to that user or error messages if not authenticated.
+
+This request upon  finding the user via his/her tax payers ID, it sends a recovery email to the tax payer; this contains a token unique to the user or error messages if not authenticated.
+
 
 `POST` <https://paytax-app.herokuapp.com/api/v1/user/recovery>
 
@@ -92,7 +109,8 @@ Request format:
 
 ## Individual businesses and Companies password reset
 
-This request upon Authentication of the token sent via a recovery mail to the tax payer resets the tax payer's password to the new one or error messages.
+This request upon  Authentication of the token, which was sent via a recovery email to the tax payer, resets the tax payer's password to the new one or error messages.
+
 
 `POST` <https://paytax-app.herokuapp.com/api/v1/user/change-password?token=:token>
 
