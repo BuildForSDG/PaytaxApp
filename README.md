@@ -220,6 +220,7 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 [talkchika](https://twitter.com/talkchika 'twitter profile') - Fullstack/UI/UX/Android Developer (Ass. TTL)
 
 ![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[triple0t](https://github.com/triple0t 'github profile')
+![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)
 
 ![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Daniel Ufeli](https://github.com/danielufeli 'github profile')
 
