@@ -210,7 +210,7 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 
 ![website](https://img.icons8.com/cute-clipart/64/000000/github.png)[Nextwebb](https://github.com/nextwebb 'github profile')
 ![website](https://img.icons8.com/fluent/64/000000/link.png)[Portfolio](https://nextwebb.com.ng/ 'portfolio website')
-![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)[i_am_nextwebb](https://twitter.com/i_am_nextwebb 'twitter profile')Fullstack Developer (TTL)
+![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)[i_am_nextwebb](https://twitter.com/i_am_nextwebb 'twitter profile')- Fullstack Developer (TTL)
 
 ![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Ben Kovie](https://github.com/ben-kovie 'github profile')
 
@@ -228,7 +228,7 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 
 [![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)](https://github.com/Ebugo 'github profile')
 [![website](https://img.icons8.com/fluent/64/000000/globe.png)](https://gospel-chinyereugo.netlify.com/ 'portfolio website')
-[![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)](https://twitter.com/Codebug_ 'twitter profile') Gospel Chinyerugo (Codebug)
+[![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)](https://twitter.com/Codebug_ 'twitter profile') - Gospel Chinyerugo (Codebug)
 
 [Femi Akinsiku] - Team Mentor
 
