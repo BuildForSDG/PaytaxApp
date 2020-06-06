@@ -10,6 +10,12 @@ const gatewayRouter = require('./routes/gateway');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.get('/', (req, res) => {
   res.send('welcome!');
 });
