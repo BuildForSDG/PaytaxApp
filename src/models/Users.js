@@ -87,13 +87,13 @@ User.prototype.validate = function () {
     if (validator.isEmpty(this.data.state)) {
       this.errors.push('You must provide a state.');
     }
-    if (!validator.isEmpty(this.data.state) && !validator.isAlpha(this.data.state)) {
+    if (!validator.isEmpty(this.data.state) && typeof (this.data.state) !== 'string') {
       this.errors.push('State can only contain letters.');
     }
     if (validator.isEmpty(this.data.city)) {
       this.errors.push('You must provide a city.');
     }
-    if (!validator.isEmpty(this.data.city) && !validator.isAlpha(this.data.city)) {
+    if (!validator.isEmpty(this.data.city) && typeof (this.data.city) !== 'string') {
       this.errors.push('City can only contain letters.');
     }
 
