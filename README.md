@@ -1,12 +1,40 @@
-# #PayTax App
+# #PROJECT PAYTAX
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21fe87768d424c2e85b089afea2f2084)](https://app.codacy.com/gh/BuildForSDG/PayTax-app?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/PayTax-app&utm_campaign=Badge_Grade_Settings)
 
-## About
+## STATEMENT OF PROBLEM
 
-This Application aims to enhance the process of tax collection with a platform that allows for a seamless tax payment.
+Develop a tech solution to help improve revenue collection within your local government/community.
 
-## Why
+## PROBLEM
+
+Tax and other Revenue collection.
+
+## INTRODUCTION
+
+In developing countries and under developed countries, most especially africa, collection of data and data management of individuals, business etc has been a major problem. This is due to the sensitization approach as not many individuals in these countries have been enlightened as to the imporance.
+
+Data collection in most cases is quite frankly for the government and the society at large as this can contribute immensely to economic growth and developement.
+
+When a governmen or society is able to have at leat over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
+
+This is what has brought about this proposed system, which is geared towards collection of individual data of working citizens, business owners and industries which inturn will monitor tax payment and other internal generated revenue.
+
+With this in view, tax payemnt and income revenue for states and countries will greatly improve. This will help the government to provide and bring adequate and necessary development to it's citizens.
+
+## SOLUTION/PROJECT
+
+To develop an app, that will help in data collection of working citizen or salary earners in the community, business owners and industries. This Application aims to enhance the process of tax collection with a platform that allows for a seamless tax payment. This system will monitor tax payment and revenue collection.
+
+This platform also is geared towards a hassle free mode of taxpayment and revenue generation. It aims at reducing the stress of already paying individuals and customers and also an ease of access to those coming on board.
+
+The platform also provides a means where every tax payer can monitor their previous payments, generate receipts and also have it sent to their mails. They will also have the opportunity to update their income incase of any upgrade or downgrade.
+
+The system also aims at flexibility. It also aims at collecting indivial bank details, working with relevant authorities that will notify of any direct deduction from bank accounts in the event of delay or non-compliance.
+
+## WHY IS THIS PROJECT RELEVANT
+
+If every Nigerian is made to see the importance of tax payment, and the developmental contributions it can bring to the society. They will see themselves as stakeholders in economic development. Knowing fully well that the growth and development of their society is in their hands.
 
 - Tax payers can easily pay tax from the comfort of the their business locations and offices.
 
@@ -18,7 +46,7 @@ This Application aims to enhance the process of tax collection with a platform t
 
 - Easily get tax receipts.
 
-## Usage
+## USAGE
 
 ### API guide for consuming this back-end layer
 
@@ -26,9 +54,10 @@ This Application aims to enhance the process of tax collection with a platform t
 
 Upon registration the Tax payer gets returned a Tax Payer ID by email and json response.
 
-`POST`  <https://paytax-app.herokuapp.com/api/v1/user/register>
+`POST` <https://paytax-app.herokuapp.com/api/v1/user/register>
 
 Request format: Individual business
+
 
 `{
     "company": "false",
@@ -45,74 +74,62 @@ Request format: Individual business
     "city": "laten lotus"
 }`
 
+
 Request format: Company
 
-`{
- "company":"true",
- "name":"peterson",
- "address":"lagos",
- "email":"y@y.com",
- "phone":"09067026252",
- "bvn":"124214141235",
- "password":"wqdsafdsfds242153",
- "state":"lagos",
- "city":"ogba"
-}`
+`{ "company":"true", "name":"peterson", "address":"lagos", "email":"y@y.com", "phone":"09067026252", "bvn":"124214141235", "password":"wqdsafdsfds242153", "state":"lagos", "city":"ogba" }`
 
-****
+---
 
 ## Individual businesses and Companies login
 
-This request returns an access token upon  Authentication or error messages.
+This request returns an access token upon Authentication or error messages.
 
-`POST`  <https://paytax-app.herokuapp.com/api/v1/user/login>
+`POST` <https://paytax-app.herokuapp.com/api/v1/user/login>
 
 Request format:
 
-`{
-"taxID":"SyNcnrmKJy",
-"password":"password123456"
-}`
-****
+`{ "taxID":"SyNcnrmKJy", "password":"password123456" }`
+
+---
 
 ## Individual businesses and Companies password recovery
 
+
 This request upon  finding the user via his/her tax payers ID, it sends a recovery email to the tax payer; this contains a token unique to the user or error messages if not authenticated.
 
-`POST`  <https://paytax-app.herokuapp.com/api/v1/user/recovery>
+
+`POST` <https://paytax-app.herokuapp.com/api/v1/user/recovery>
 
 Request format:
 
-`{
-  "taxPayerId": "jCaKiKWpLy"
-}`
-****
+`{ "taxPayerId": "jCaKiKWpLy" }`
+
+---
 
 ## Individual businesses and Companies password reset
 
 This request upon  Authentication of the token, which was sent via a recovery email to the tax payer, resets the tax payer's password to the new one or error messages.
 
-`POST`  <https://paytax-app.herokuapp.com/api/v1/user/change-password?token=:token>
+
+`POST` <https://paytax-app.herokuapp.com/api/v1/user/change-password?token=:token>
 
 Request format:
 BODY:
-`{
-  "password": "password",
-  "confirmPassword": "password"
-}`
+`{ "password": "password", "confirmPassword": "password" }`
 
 PARAM:
 `token : token`
 
-****
+---
 
 ## Business data for Authenticated users
 
 Returns all company and individual data.
 
-`GET`  <https://paytax-app.herokuapp.com/api/v1/user/:taxID>
+`GET` <https://paytax-app.herokuapp.com/api/v1/user/:taxID>
 
-****
+---
 
 ## Tax types for payment
 
@@ -120,39 +137,34 @@ Returns all tax types (IRS), payable through this platform. this is a protected 
 
 Also update this service with more tax types , integrated here.
 
-`GET`  <https://paytax-app.herokuapp.com/api/v1/payments/tax_types>
+`GET` <https://paytax-app.herokuapp.com/api/v1/payments/tax_types>
 
 `POST` <https://paytax-app.herokuapp.com/api/v1/payments/tax_types>
 
-****
+---
 
 ## Tax payment history
 
 Return all tax payment transactions performed using this payment service. this is a protected route, so a user needs to be authenticated.
-`GET`    <https://paytax-app.herokuapp.com/api/v1/payments/history/:taxPayerID>
+`GET` <https://paytax-app.herokuapp.com/api/v1/payments/history/:taxPayerID>
 
-****
+---
 
 ## Integrate Payment gateway
 
- This is a protected route, so a user needs to be authenticated.
+This is a protected route, so a user needs to be authenticated.
 
 Upon filling the name, amount and email form and sending the request, it redirects you to the standard payment gateway modal.
 
 Upon successful payment it redirects you to the base route and sends a payment receipt to the email you provided.
 
-`POST`   <https://paytax-app.herokuapp.com/api/v1/gateway/pay>
+`POST` <https://paytax-app.herokuapp.com/api/v1/gateway/pay>
 
 Request format:
 
-`{
-"name":"dickson douglas",
-"amount":"3000",
-"email":"ricknet@gmail.com",
-"tax_type": "PIT"
-}`
+`{ "name":"dickson douglas", "amount":"3000", "email":"ricknet@gmail.com", "tax_type": "PIT" }`
 
-****
+---
 
 ## Payment Receipt
 
@@ -164,7 +176,7 @@ Request format:
 
 - Get taxpayer Receipt by taxPayerID and paymentDate.
 
-`GET`   <https://paytax-app.herokuapp.com/api/v1/payments/receipt?taxPayerID=&paymentDate>
+`GET` <https://paytax-app.herokuapp.com/api/v1/payments/receipt?taxPayerID=&paymentDate>
 
 Accepts two query parameters:
 
@@ -172,7 +184,7 @@ Accepts two query parameters:
 const { taxPayerID, paymentDate } = req.query;
 ```
 
-****
+---
 
 ## Calculate User's Payable Income Tax
 
@@ -180,7 +192,7 @@ const { taxPayerID, paymentDate } = req.query;
 
 - Update user's info with calculated tax.
 
-`POST`   <https://paytax-app.herokuapp.com/api/v1/payments/payment_income_tax>
+`POST` <https://paytax-app.herokuapp.com/api/v1/payments/payment_income_tax>
 
 Accepts two body parameters:
 
@@ -196,7 +208,7 @@ After clonning the repo to your local machine and moving into the cloned folder,
 
 `src/server.js` is the entry to the project and source code should go into the `src` folder.
 
-All tests should be written in the `__tests__' folder. There's a sample in there.
+All tests should be written in the `**tests**' folder. There's a sample in there.
 
 ## Hints
 
@@ -212,25 +224,31 @@ All tests should be written in the `__tests__' folder. There's a sample in there
 
 - Run your app in local dev mode: `yarn start`. This puts the bundled app in a `dist` folder, set up a local web server at localhost:3000, and continues to watch for your code changes which it syncs with the local server. This means if you loaded the app in a browser, it will auto-refresh as you code along. Feel free to use whatever bundler best meets your needs. Parcel was only added as a sample and for those looking for a simple but effective solution to the hassle of bundlers.
 
-## Authors
+## AUTHORS/TEAM-043 MEMBERS
 
-![website](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Nextwebb](<https://github.com/nextwebb> "github profile")
-![website](<https://img.icons8.com/fluent/64/000000/link.png>)[Portfolio](<https://nextwebb.com.ng/> "portfolio website")
-![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)[i_am_nextwebb](<https://twitter.com/i_am_nextwebb> "twitter profile")
+![website](https://img.icons8.com/cute-clipart/64/000000/github.png)[Nextwebb](https://github.com/nextwebb 'github profile')
+![website](https://img.icons8.com/fluent/64/000000/link.png)[Portfolio](https://nextwebb.com.ng/ 'portfolio website')
+![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)[i_am_nextwebb](https://twitter.com/i_am_nextwebb 'twitter profile')- Fullstack Developer (TTL)
 
-![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Ben Kovie](<https://github.com/ben-kovie> "github profile")
+![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Ben Kovie](https://github.com/ben-kovie 'github profile')
 
-![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Chika Ani](<https://github.com/casmonas> "github profile")
+![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Chika Ani](https://github.com/casmonas 'github profile')
+![website](https://img.icons8.com/fluent/64/000000/globe.png)[Website](https://sarchmedia.com/ 'Website')
+![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)
+[talkchika](https://twitter.com/talkchika 'twitter profile') - Fullstack/UI/UX/Android Developer (Ass. TTL)
 
-![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[triple0t](<https://github.com/triple0t> "github profile")
+![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[triple0t](https://github.com/triple0t 'github profile')
+![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)
 
-![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Daniel Ufeli](<https://github.com/danielufeli> "github profile")
+![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Daniel Ufeli](https://github.com/danielufeli 'github profile')
 
-![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)[Sammiepius](<https://github.com/sammiepius> "github profile")
+![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Sammiepius](https://github.com/sammiepius 'github profile')
 
-[![github profile](<https://img.icons8.com/cute-clipart/64/000000/github.png>)](<https://github.com/Ebugo> "github profile")
-[![website](<https://img.icons8.com/fluent/64/000000/globe.png>)](<https://gospel-chinyereugo.netlify.com/> "portfolio website")
-[![twitter profile](<https://img.icons8.com/fluent/48/000000/twitter.png>)](<https://twitter.com/Codebug_> "twitter profile") Gospel Chinyerugo (Codebug)
+[![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)](https://github.com/Ebugo 'github profile')
+[![website](https://img.icons8.com/fluent/64/000000/globe.png)](https://gospel-chinyereugo.netlify.com/ 'portfolio website')
+[![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)](https://twitter.com/Codebug_ 'twitter profile') - Gospel Chinyerugo (Codebug)
+
+[Femi Akinsiku] - Team Mentor
 
 ## Contributing
 
@@ -245,11 +263,7 @@ First, you can send a mail to buildforsdg@andela.com to indicate your interest, 
 
 ## Acknowledgements
 
-Did you use someone else’s code?
-Do you want to thank someone explicitly?
-Did someone’s blog post spark off a wonderful idea or give you a solution to nagging problem?
-
-It's powerful to always give credit.
+Team -43 wants to explicitly thank Facebook and Andela for their support and assistance throughout this project. Special shoutout to Femi Akinsiku, for his assitance, patience and availability to help us through our difficulties.
 
 ## LICENSE
 
