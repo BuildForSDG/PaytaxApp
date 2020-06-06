@@ -1,8 +1,8 @@
-# #PROJECT PAYTAX
+# PAYTAX  PROJECT
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21fe87768d424c2e85b089afea2f2084)](https://app.codacy.com/gh/BuildForSDG/PayTax-app?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDG/PayTax-app&utm_campaign=Badge_Grade_Settings)
 
-## STATEMENT OF PROBLEM
+##  PROBLEM STATEMENT
 
 Develop a tech solution to help improve revenue collection within your local government/community.
 
@@ -12,11 +12,11 @@ Tax and other Revenue collection.
 
 ## INTRODUCTION
 
-In developing countries and under developed countries, most especially africa, collection of data and data management of individuals, business etc has been a major problem. This is due to the sensitization approach as not many individuals in these countries have been enlightened as to the imporance.
+In developing countries and under developed countries, such as many african countries, collection of data and data management of individuals and businesses has been a major problem. This is due to the lack of sensitization, as many individuals in these african countries have not been enlightened as to the importance.
 
 Data collection in most cases is quite frankly for the government and the society at large as this can contribute immensely to economic growth and developement.
 
-When a governmen or society is able to have at leat over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
+When a government or society is able to have at leat over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
 
 This is what has brought about this proposed system, which is geared towards collection of individual data of working citizens, business owners and industries which inturn will monitor tax payment and other internal generated revenue.
 
@@ -34,7 +34,7 @@ The system also aims at flexibility. It also aims at collecting indivial bank de
 
 ## WHY IS THIS PROJECT RELEVANT
 
-If every Nigerian is made to see the importance of tax payment, and the developmental contributions it can bring to the society. They will see themselves as stakeholders in economic development. Knowing fully well that the growth and development of their society is in their hands.
+If every Nigerian is made to see the importance of tax payment, and the sustainable developments  it can bring to the society, They will see themselves as stakeholders in economic development. Knowing fully well that the growth and development of their society is in their hands.
 
 - Tax payers can easily pay tax from the comfort of the their business locations and offices.
 
