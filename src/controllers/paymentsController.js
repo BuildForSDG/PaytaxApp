@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-plusplus */
 /* eslint-disable linebreak-style */
 /* eslint-disable no-console */
@@ -158,7 +159,11 @@ exports.paymentIncomeTax = [
           data: 'User not found'
         });
       }
-      return res.json({ status: true, data: "User's payable income tax updated successfully" });
+      return res.json({
+        status: true,
+        data: totalTaxPayable,
+        message: "User's payable income tax updated successfully"
+      });
     } catch (error) {
       return res.status(400).json({
         status: false,
