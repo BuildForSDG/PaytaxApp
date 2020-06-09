@@ -6,7 +6,7 @@ const usersController = require('../controllers/usersController');
 const gatewayController = require('../controllers/gatewayController');
 
 // protected routes
-router.post('/pay', usersController.mustBeLoggedIn, gatewayController.pay);
+router.post('/pay', gatewayController.pay);
 
 router.get('/callback', gatewayController.verify);
 
