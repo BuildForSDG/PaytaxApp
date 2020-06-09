@@ -27,7 +27,7 @@ exports.verify = (req, res) => {
     // add the reciepts to history
     Payments.addToHistory(response.data).then((status) => {
       // redirect to payment receipt
-      res.redirect(`/api/v1/payments/receipt?taxPayerID=${status.taxPayerId}&paymentDate=${status.payment_date}`);
+      res.redirect('https://paytax.herokuapp.com/dashboard');
     }).catch((err) => {
       res.status(400).json({
         status: false,
