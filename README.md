@@ -230,9 +230,8 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 ![website](https://img.icons8.com/fluent/64/000000/link.png)[Portfolio](https://nextwebb.com.ng/ 'portfolio website')
 ![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)[i_am_nextwebb](https://twitter.com/i_am_nextwebb 'twitter profile')- Backend Developer (TTL)
 
-![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Ben Kovie](https://github.com/ben-kovie 'github profile')
+![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Chika Ani](https://github.com/casmonas 'github profile') 
 
-![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Chika Ani](https://github.com/casmonas 'github profile')
 ![website](https://img.icons8.com/fluent/64/000000/globe.png)[Website](https://sarchmedia.com/ 'Website')
 ![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)
 [talkchika](https://twitter.com/talkchika 'twitter profile') - UI/UX (Ass. TTL)
@@ -241,8 +240,6 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 ![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png) - Team Mentor
 
 ![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Daniel Ufeli](https://github.com/danielufeli 'github profile') - Frontend Developer
-
-![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)[Sammiepius](https://github.com/sammiepius 'github profile')
 
 [![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)](https://github.com/Ebugo 'github profile')
 [![website](https://img.icons8.com/fluent/64/000000/globe.png)](https://gospel-chinyereugo.netlify.com/ 'portfolio website')
