@@ -17,12 +17,12 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint \"src/**/*.js\"",
-    "client-install": "npm install --prefix client",
+    "client-install": "npm install --prefix Paytax-frontend",
     "start": "node ./src/db",
     "server": "nodemon ./src/db",
-    "client": "npm start --prefix client",
+    "client": "npm start --prefix Paytax-frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix Paytax-frontend && npm run build --prefix Paytax-frontend"
   },
   "author": {
     "name": "Build For SDG",
@@ -59,7 +59,7 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
-    "babel-jest": "^25.4.0",
+    "babel-jest": "^24.9.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
