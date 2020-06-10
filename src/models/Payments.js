@@ -5,12 +5,16 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
+const moment = require('moment');
 const User = require('./Users');
+
 const usersCollection = require('../db').db().collection('users');
 
 const paymentsCollection = require('../db').db().collection('payments');
 
 const taxTypesCollection = require('../db').db().collection('taxtypes');
+
+
 
 const Payments = function (taxPayerID, paymentDate) {
   this.taxPayerID = taxPayerID;
@@ -55,7 +59,7 @@ Payments.addToHistoryInline = function (refData) {
     const selectedData = {
       payment_reference: refData.reference,
       amount: (refData.amount / 100),
-      payment_date: new Date(),
+      payment_date: moment(new Date()).format('LLL'),
       currency: 'NGN',
       taxpayer: refData.fullname,
       email: refData.email,
