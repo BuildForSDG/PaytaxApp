@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 const cors = require('cors');
+const path = require('path');
 
 const usersRouter = require('./routes/users');
 const paymentsRouter = require('./routes/payments');
@@ -27,6 +28,16 @@ app.get('/', (req, res) => {
 app.use('/api/v1/user', usersRouter);
 app.use('/api/v1/payments', paymentsRouter);
 app.use('/api/v1/gateway', gatewayRouter);
+
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

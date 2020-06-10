@@ -54,7 +54,7 @@ If every Nigerian is made to see the importance of tax payment, and the sustaina
 
 Upon registration the Tax payer gets returned a Tax Payer ID by email and json response.
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/user/register>
+`POST` </api/v1/user/register>
 
 Request format: Individual business
 
@@ -85,7 +85,7 @@ Request format: Company
 
 This request returns an access token upon Authentication or error messages.
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/user/login>
+`POST` </api/v1/user/login>
 
 Request format:
 
@@ -99,7 +99,7 @@ Request format:
 This request upon  finding the user via his/her tax payers ID, it sends a recovery email to the tax payer; this contains a token unique to the user or error messages if not authenticated.
 
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/user/recovery>
+`POST` </api/v1/user/recovery>
 
 Request format:
 
@@ -112,7 +112,7 @@ Request format:
 This request upon  Authentication of the token, which was sent via a recovery email to the tax payer, resets the tax payer's password to the new one or error messages.
 
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/user/change-password?token=:token>
+`POST` </api/v1/user/change-password?token=:token>
 
 Request format:
 BODY:
@@ -127,7 +127,7 @@ PARAM:
 
 Returns all company and individual data.
 
-`GET` <https://paytax-app.herokuapp.com/api/v1/user/:taxID>
+`GET` </api/v1/user/:taxID>
 
 ---
 
@@ -137,16 +137,16 @@ Returns all tax types (IRS), payable through this platform. this is a protected 
 
 Also update this service with more tax types , integrated here.
 
-`GET` <https://paytax-app.herokuapp.com/api/v1/payments/tax_types>
+`GET` </api/v1/payments/tax_types>
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/payments/tax_types>
+`POST` </api/v1/payments/tax_types>
 
 ---
 
 ## Tax payment history
 
 Return all tax payment transactions performed using this payment service. this is a protected route, so a user needs to be authenticated.
-`GET` <https://paytax-app.herokuapp.com/api/v1/payments/history/:taxPayerID>
+`GET` </api/v1/payments/history/:taxPayerID>
 
 ---
 
@@ -158,7 +158,7 @@ Upon filling the name, amount and email form and sending the request, it redirec
 
 Upon successful payment it redirects you to the base route and sends a payment receipt to the email you provided.
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/gateway/pay>
+`POST` </api/v1/gateway/pay>
 
 Request format:
 
@@ -176,7 +176,7 @@ Request format:
 
 - Get taxpayer Receipt by taxPayerID and paymentDate.
 
-`GET` <https://paytax-app.herokuapp.com/api/v1/payments/receipt?taxPayerID=&paymentDate>
+`GET` </api/v1/payments/receipt?taxPayerID=&paymentDate>
 
 Accepts two query parameters:
 
@@ -192,7 +192,7 @@ const { taxPayerID, paymentDate } = req.query;
 
 - Update user's info with calculated tax.
 
-`POST` <https://paytax-app.herokuapp.com/api/v1/payments/payment_income_tax>
+`POST` </api/v1/payments/payment_income_tax>
 
 Accepts two body parameters:
 
