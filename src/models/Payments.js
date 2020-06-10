@@ -5,12 +5,16 @@
 /* eslint-disable max-len */
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
+const moment = require('moment');
 const User = require('./Users');
+
 const usersCollection = require('../db').db().collection('users');
 
 const paymentsCollection = require('../db').db().collection('payments');
 
 const taxTypesCollection = require('../db').db().collection('taxtypes');
+
+
 
 const Payments = function (taxPayerID, paymentDate) {
   this.taxPayerID = taxPayerID;
@@ -36,6 +40,30 @@ Payments.addToHistory = function (refData) {
       taxpayer: refData.data.metadata.full_name,
       email: refData.data.customer.email,
       tax_type: refData.data.metadata.tax_type
+    };
+    usersCollection.findOne({ email: selectedData.email }).then((user) => {
+      selectedData.taxPayerId = user.taxPayerId;
+      selectedData.state = user.state;
+      paymentsCollection.insertOne(selectedData).then((success) => {
+        resolve(selectedData);
+        Payments.sendReceipt(selectedData);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  });
+};
+
+Payments.addToHistoryInline = function (refData) {
+  return new Promise((resolve, reject) => {
+    const selectedData = {
+      payment_reference: refData.reference,
+      amount: (refData.amount / 100),
+      payment_date: moment(new Date()).format('LLL'),
+      currency: 'NGN',
+      taxpayer: refData.fullname,
+      email: refData.email,
+      tax_type: refData.taxtype
     };
     usersCollection.findOne({ email: selectedData.email }).then((user) => {
       selectedData.taxPayerId = user.taxPayerId;
