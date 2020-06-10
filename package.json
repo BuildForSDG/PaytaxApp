@@ -22,8 +22,7 @@
     "server": "nodemon ./src/db",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":
-      "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": {
     "name": "Build For SDG",
@@ -64,7 +63,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
-    "jest": "^25.4.0",
+    "jest": "^24.9.0",
     "nodemon": "^2.0.3",
     "parcel-bundler": "^1.12.4"
   },
@@ -73,5 +72,5 @@
   ],
   "engines": {
     "node": "12.18.0"
-}
+  }
 }
