@@ -17,12 +17,12 @@
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
     "lint": "eslint \"src/**/*.js\"",
-    "client-install": "npm install --prefix Paytax-frontend",
+    "client-install": "npm install --prefix client",
     "start": "node ./src/db",
     "server": "nodemon ./src/db",
-    "client": "npm start --prefix Paytax-frontend",
+    "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix Paytax-frontend && npm run build --prefix Paytax-frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": {
     "name": "Build For SDG",
