@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { setAlert } from './alert';
 import { CALCULATE_PIT, TAX_TYPES, PAYSTACK_PAYMENT, TAX_ERROR } from './types';
 
-const url = 'https://paytax-app.herokuapp.com/api/v1/payments';
+const url = '/api/v1/payments';
 
 // Get Tax Types
 export const taxTypes = () => async dispatch => {
@@ -68,7 +68,7 @@ export const paystackPayment = (formData) => async dispatch => {
     };
     try {
       const res = await Axios.post(
-        'https://paytax-app.herokuapp.com/api/v1/gateway/pay',
+        '/api/v1/gateway/pay',
         formData,
         config
       );
