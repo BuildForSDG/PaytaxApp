@@ -75,6 +75,30 @@ exports.paymentHistory = function (req, res) {
   });
 };
 
+exports.addPaymentToHistory = function (req, res) {
+  console.log(req.body);
+  Payments.addToHistoryInline(req.body).then((data) => {
+    if (data === undefined || data.length === 0) {
+      // array empty or does not exist
+      res.status(404).json({
+        status: false,
+        data: ' Invalid Tax Payer ID'
+      });
+    } else {
+      res.status(200).json({
+        status: true,
+        data
+      });
+    }
+  }).catch((err) => {
+    // bad request
+    res.status(400).json({
+      status: false,
+      data: 'Bad Request'
+    });
+  });
+};
+
 //  get  receipt from taxPayerID
 exports.paymentReceipt = function (req, res) {
   const { taxPayerID, paymentDate } = req.query;

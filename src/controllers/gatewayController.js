@@ -26,7 +26,6 @@ exports.verify = (req, res) => {
     const { response } = verification;
     // add the reciepts to history
     Payments.addToHistory(response.data).then((status) => {
-
       // redirect to payment receipt
       res.redirect('https://paytax.herokuapp.com/dashboard');
     }).catch((err) => {

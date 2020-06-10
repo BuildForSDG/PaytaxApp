@@ -50,6 +50,30 @@ Payments.addToHistory = function (refData) {
   });
 };
 
+Payments.addToHistoryInline = function (refData) {
+  return new Promise((resolve, reject) => {
+    const selectedData = {
+      payment_reference: refData.reference,
+      amount: (refData.amount / 100),
+      payment_date: new Date(),
+      currency: 'NGN',
+      taxpayer: refData.fullname,
+      email: refData.email,
+      tax_type: refData.taxtype
+    };
+    usersCollection.findOne({ email: selectedData.email }).then((user) => {
+      selectedData.taxPayerId = user.taxPayerId;
+      selectedData.state = user.state;
+      paymentsCollection.insertOne(selectedData).then((success) => {
+        resolve(selectedData);
+        Payments.sendReceipt(selectedData);
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  });
+};
+
 Payments.sendReceipt = async function (selectedData) {
   let msg = selectedData;
   msg = {
