@@ -22,8 +22,7 @@
     "start": "node ./src/db",
     "server": "nodemon ./src/db",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "npm client-install  && npm run build "
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": {
     "name": "Build For SDG",
