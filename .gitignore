@@ -2,3 +2,7 @@
 .env
 client/node_modules
 node_modules
+.DS_Store
+*.orig
+.idea/
+.vscode/
