@@ -54,7 +54,7 @@ If every Nigerian is made to see the importance of tax payment, and the sustaina
 
 Upon registration the Tax payer gets returned a Tax Payer ID by email and json response.
 
-`POST` </api/v1/user/register>
+`POST` < /api/v1/user/register>
 
 Request format: Individual business
 
