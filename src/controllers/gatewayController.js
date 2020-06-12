@@ -4,7 +4,6 @@
 const Gateway = require('../models/Gateway');
 const Payments = require('../models/Payments');
 
-
 exports.pay = (req, res) => {
   const paystack = new Gateway(req.body);
   paystack.initializePayment().then((response) => {

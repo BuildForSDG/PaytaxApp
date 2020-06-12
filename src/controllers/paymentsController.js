@@ -70,7 +70,7 @@ exports.paymentHistory = function (req, res) {
     // bad request
     res.status(400).json({
       status: false,
-      data: 'Bad Request'
+      data: err
     });
   });
 };

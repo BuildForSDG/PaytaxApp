@@ -6,6 +6,7 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 const moment = require('moment');
+const { ObjectId } = require('mongodb'); // or ObjectID
 const User = require('./Users');
 
 const usersCollection = require('../db').db().collection('users');
@@ -60,8 +61,7 @@ Payments.addToHistoryInline = function (refData) {
       currency: 'NGN',
       taxpayer: refData.fullname,
       email: refData.email,
-      taxtype: refData.taxtype,
-      reference: refData.reference
+      taxtype: refData.taxtype
     };
     usersCollection.findOne({ email: selectedData.email }).then(async (user) => {
       if (!user) {
@@ -110,10 +110,14 @@ Payments.prototype.getHistory = function () {
       { taxPayerId: this.taxPayerID },
       { $sort: { payment_date: -1 } }
     ).toArray().then((responses) => {
+      if (!responses) {
+        reject('No payment histroy found!');
+        return;
+      }
       const responseHistory = responses.map((response) => response);
       resolve(responseHistory);
     }).catch((err) => {
-      reject('err');
+      reject('Bad request');
     });
   });
 };
