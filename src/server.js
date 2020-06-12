@@ -3,14 +3,11 @@ const express = require('express');
 
 const app = express();
 
-const cors = require('cors');
 const path = require('path');
 
 const usersRouter = require('./routes/users');
 const paymentsRouter = require('./routes/payments');
 const gatewayRouter = require('./routes/gateway');
-
-app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
