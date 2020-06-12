@@ -14,8 +14,6 @@ const paymentsCollection = require('../db').db().collection('payments');
 
 const taxTypesCollection = require('../db').db().collection('taxtypes');
 
-
-
 const Payments = function (taxPayerID, paymentDate) {
   this.taxPayerID = taxPayerID;
   this.paymentDate = paymentDate;
@@ -28,7 +26,6 @@ const Payments = function (taxPayerID, paymentDate) {
   this.errors = [];
   this.taxType = null;
 };
-
 
 Payments.addToHistory = function (refData) {
   return new Promise((resolve, reject) => {
@@ -58,21 +55,27 @@ Payments.addToHistoryInline = function (refData) {
   return new Promise((resolve, reject) => {
     const selectedData = {
       payment_reference: refData.reference,
-      amount: (refData.amount / 100),
+      amount: (refData.amount),
       payment_date: moment(new Date()).format('LLL'),
       currency: 'NGN',
       taxpayer: refData.fullname,
       email: refData.email,
-      tax_type: refData.taxtype
+      taxtype: refData.taxtype,
+      reference: refData.reference
     };
-    usersCollection.findOne({ email: selectedData.email }).then((user) => {
+    usersCollection.findOne({ email: selectedData.email }).then(async (user) => {
+      if (!user) {
+        reject('Organization not found!');
+        return;
+      }
       selectedData.taxPayerId = user.taxPayerId;
       selectedData.state = user.state;
+
       paymentsCollection.insertOne(selectedData).then((success) => {
         resolve(selectedData);
         Payments.sendReceipt(selectedData);
       }).catch((err) => {
-        reject(err);
+        reject('Bad request');
       });
     });
   });
@@ -114,7 +117,6 @@ Payments.prototype.getHistory = function () {
     });
   });
 };
-
 
 // get all other tax types asides the PIT tax
 Payments.getOtherTaxTypes = function () {
