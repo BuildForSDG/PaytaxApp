@@ -15,15 +15,25 @@ exports.home = (req, res) => {
   res.json('testing api');
 };
 
-exports.registeration = (req, res) => {
-  const user = new User(req.body);
-  user.register().then((result) => res.status(200).json({
-    status: true,
-    PaytaxId: result.taxPayerId
-  })).catch((err) => {
-    res.json(err);
-  });
-};
+exports.registeration = [
+  [
+    check('fname').isAlpha().withMessage('firstname must be entered'),
+    check('lname').isAlpha().withMessage('last name must be entered'),
+    check('email').isEmail().withMessage('email must be entered correctly'),
+    check('phone').isEmpty().withMessage('phone number must be entered'),
+    check('pasword number must be entereds').isLength({ min: 8 }).withMessage('Password must be at least 8 chars long')
+  ],
+
+  (req, res) => {
+    const user = new User(req.body);
+    user.register().then((result) => res.status(200).json({
+      status: true,
+      PaytaxId: result.taxPayerId
+    })).catch((err) => {
+      res.json(err);
+    });
+  }
+];
 
 exports.login = [
   [

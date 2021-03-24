@@ -18,7 +18,7 @@
     "test:cover": "jest --coverage",
     "lint": "eslint \"src/**/*.js\"",
     "start": "node ./src/db",
-    "server": "nodemon ./src/db"
+    "dev": "nodemon ./src/db"
   },
   "author": {
     "name": "Build For SDG",

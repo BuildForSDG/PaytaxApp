@@ -22,9 +22,9 @@ app.get('/', (req, res) => {
   res.send('welcome!');
 });
 // api routes
-app.use('/api/v1/user', usersRouter);
+app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/payments', paymentsRouter);
-app.use('/api/v1/gateway', gatewayRouter);
+app.use('/api/v1/gateways', gatewayRouter);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -35,7 +35,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(res.status(400).json({
@@ -43,7 +42,6 @@ app.use((req, res, next) => {
     data: 'Bad request'
   }));
 });
-
 // error handler
 app.use((err, req, res) => {
   // render the error page
@@ -52,6 +50,5 @@ app.use((err, req, res) => {
     data: 'internal server error'
   });
 });
-
 
 module.exports = app;
