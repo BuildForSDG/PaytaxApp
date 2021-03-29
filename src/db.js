@@ -7,6 +7,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const mongodb = require('mongodb');
 
+console.log(process.env.CONNECTIONSTRING);
+
 mongodb.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
   if (err) {
     // eslint-disable-next-line indent
