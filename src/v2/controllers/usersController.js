@@ -20,9 +20,8 @@ exports.registeration = [
     check('firstname').isAlpha().withMessage('firstname must be entered'),
     check('lastname').isAlpha().withMessage('last name must be entered'),
     check('email').isEmail().withMessage('email must be entered correctly'),
-    check('phone').isAlphanumeric().withMessage('phone number must be entered correctly'),
-    check('phone').isEmpty().withMessage('phone number must be entered'),
-    check('pasword number must be entereds').isLength({ min: 8 }).withMessage('Password must be at least 8 chars long')
+    check('phone').isMobilePhone().withMessage('phone number must be entered correctly'),
+    check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 chars long')
 
   ],
   async (req, res) => {
@@ -30,14 +29,31 @@ exports.registeration = [
     if (!errors.isEmpty()) {
       return res.status(422).json({ status: false, errors: errors.array() });
     }
-    console.log(req.boady);
+
     const user = new User(req.body);
 
-    user.register().then((result) => res.status(200).json({
-      status: true,
-      PaytaxId: result.taxPayerId
-    })).catch((err) => {
-      res.json(err);
+    user.register().then(async (result) => {
+      // eslint-disable-next-line no-shadow
+      const user = await usersCollection.findOne({
+        email: req.body.email
+      }, { password: 0, _id: 0 });
+
+      const token = jwt.sign({ id: user.id }, process.env.JWTSECRET, {
+        expiresIn: 86400 // 24 hours
+      });
+
+      res.status(200).json({
+        status: true,
+        data: result,
+        accesstoken: token,
+        error: []
+      });
+    }).catch((err) => {
+      res.status(400).json({
+        status: false,
+        data: null,
+        error: [err]
+      });
     });
   }
 ];
@@ -70,7 +86,7 @@ exports.login = [
     if (!isPasswordValid) {
       return res.status(401).json({
         status: false,
-        token: null,
+        accesstoken: null,
         data: 'Invalid password'
       });
     }
@@ -80,7 +96,7 @@ exports.login = [
     });
     return res.status(200).json({
       status: true,
-      token,
+      accesstoken: token,
       data: user
     });
   }
@@ -154,7 +170,8 @@ exports.recovery = [
     sgMail.send(msg);
     return res.status(200).json({
       status: true,
-      data: 'Message sent'
+      data: 'Message sent',
+      token
     });
   }
 ];

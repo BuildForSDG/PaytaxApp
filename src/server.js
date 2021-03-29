@@ -16,6 +16,7 @@ const gatewayRouterV2 = require('./v2/routes/gateway');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.all('/', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
@@ -26,9 +27,9 @@ app.get('/', (req, res) => {
   res.send('welcome!');
 });
 // api routes
-app.use('/api/v2/users', usersRouter);
-app.use('/api/V2/payments', paymentsRouter);
-app.use('/api/v2/gateways', gatewayRouter);
+app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/payments', paymentsRouter);
+app.use('/api/v1/gateways', gatewayRouter);
 
 app.use('/api/v2/users', usersRouterV2);
 app.use('/api/v2/payments', paymentsRouterV2);
