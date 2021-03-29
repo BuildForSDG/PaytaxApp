@@ -5,9 +5,9 @@ const app = express();
 
 const path = require('path');
 
-const usersRouter = require('./routes/users');
-const paymentsRouter = require('./routes/payments');
-const gatewayRouter = require('./routes/gateway');
+const usersRouter = require('./v1/routes/users');
+const paymentsRouter = require('./v1/routes/payments');
+const gatewayRouter = require('./v1/routes/gateway');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

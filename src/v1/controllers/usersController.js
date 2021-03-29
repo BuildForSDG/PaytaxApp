@@ -8,7 +8,7 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const sgMail = require('@sendgrid/mail');
 const User = require('../models/Users');
-const usersCollection = require('../db').db('paytax').collection('users');
+const usersCollection = require('../../db').db('paytax').collection('users');
 
 exports.home = (req, res) => {
   // return payer Id by email
