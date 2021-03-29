@@ -9,11 +9,11 @@ const moment = require('moment');
 const { ObjectId } = require('mongodb'); // or ObjectID
 const User = require('./Users');
 
-const usersCollection = require('../db').db().collection('users');
+const usersCollection = require('../../db').db().collection('users');
 
-const paymentsCollection = require('../db').db().collection('payments');
+const paymentsCollection = require('../../db').db().collection('payments');
 
-const taxTypesCollection = require('../db').db().collection('taxtypes');
+const taxTypesCollection = require('../../db').db().collection('taxtypes');
 
 const Payments = function (taxPayerID, paymentDate) {
   this.taxPayerID = taxPayerID;

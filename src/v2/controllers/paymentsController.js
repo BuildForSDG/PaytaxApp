@@ -6,7 +6,7 @@
 /* eslint-disable func-names */
 const { check, validationResult } = require('express-validator');
 const Payments = require('../models/Payments');
-const usersCollection = require('../db').db('paytax').collection('users');
+const usersCollection = require('../../db').db('paytax').collection('users');
 
 //  calls the getTaxTypes methods
 exports.getTaxTypes = function (req, res) {
