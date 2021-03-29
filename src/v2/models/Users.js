@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const validator = require('validator');
 const md5 = require('md5');
 const sgMail = require('@sendgrid/mail');
+const { ObjectID } = require('mongodb');
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -73,6 +74,28 @@ User.prototype.register = function () {
         html: `<strong> Hi 😀 ${this.data.businessName} we've received your registration; Here's your Tax payer ID: <h1> ${this.data.taxPayerId}</h1>  </strong>`
       });
       resolve(this.data);
+    } else {
+      reject(this.errors);
+    }
+  });
+};
+
+
+User.prototype.update = function (loggedInUser) {
+  return new Promise(async (resolve, reject) => {
+    if (!this.errors.length) {
+      const filter = { _id: new ObjectID(loggedInUser) };
+      const update = this.data;
+      console.log(update);
+      await usersCollection.updateOne(
+        filter,
+        { $set: update },
+        { upsert: true }
+      ).then((doc) => {
+        resolve(doc);
+      }).catch((err) => {
+        reject(err.message);
+      });
     } else {
       reject(this.errors);
     }

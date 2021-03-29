@@ -4,11 +4,13 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 const jwt = require('jsonwebtoken');
+const { ObjectID } = require('mongodb');
 const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const sgMail = require('@sendgrid/mail');
 const User = require('../models/Users');
 const usersCollection = require('../../db').db('paytax').collection('users');
+
 
 exports.home = (req, res) => {
   // return payer Id by email
@@ -36,9 +38,11 @@ exports.registeration = [
       // eslint-disable-next-line no-shadow
       const user = await usersCollection.findOne({
         email: req.body.email
-      }, { password: 0, _id: 0 });
+      }, { password: 0 });
 
-      const token = jwt.sign({ id: user.id }, process.env.JWTSECRET, {
+      const secret = process.env.JWTSECRET;
+      // eslint-disable-next-line no-underscore-dangle
+      const token = jwt.sign({ userId: user._id }, secret, {
         expiresIn: 86400 // 24 hours
       });
 
@@ -55,6 +59,49 @@ exports.registeration = [
         error: [err]
       });
     });
+  }
+];
+
+exports.updateUser = [
+  [
+    check('bvn').optional().isAlpha(),
+    check('companyName').optional().isAlpha(),
+    check('firstname').optional().isAlpha(),
+    check('lastname').optional().isAlpha(),
+    check('state').optional().isAlpha(),
+    check('city').optional().isAlpha(),
+    check('address').optional().isAlpha(),
+    check('phone').optional().isMobilePhone(),
+    check('email').optional().isEmail()
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ status: false, errors: errors.array() });
+    }
+
+    if (Object.keys(req.body).length !== 0) {
+      const user = new User(req.body);
+
+      const loggedInUser = res.locals.user.userId;
+
+      user.update(loggedInUser).then(async (result) => {
+        res.status(201).json({
+          status: true,
+          data: 'succesfully updated'
+        });
+      }).catch((err) => {
+        res.status(400).json({
+          status: false,
+          data: err
+        });
+      });
+    } else {
+      res.status(422).json({
+        status: false,
+        data: 'empty fields'
+      });
+    }
   }
 ];
 
@@ -111,8 +158,11 @@ exports.mustBeLoggedIn = (req, res, next) => {
   }
   try {
     req.apiUser = jwt.verify(token, process.env.JWTSECRET);
+    res.locals.user = req.apiUser;
+
     next();
   } catch (error) {
+    console.log(error);
     res.status(403).json({
       status: false,
       data: 'Sorry, you must provide a valid token.'
@@ -241,21 +291,17 @@ exports.recoverPassword = [
 ];
 
 exports.getUserData = [
-  [
-    // taxPayerId must be alphanumeric and at least 15 characters long
-    check('taxID').isAlphanumeric().withMessage('Payer ID must be alphanumeric')
-      .isLength({ min: 10, max: 10 })
-      .withMessage('Tax Payer ID must be 10 chars long')
-  ],
   async (req, res) => {
+    const loggedInUser = res.locals.user.userId;
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(422).json({ status: false, errors: errors.array() });
     }
     const user = await usersCollection.findOne({
-      taxPayerId: req.params.taxID
-    }, { password: 0, _id: 0 });
+      taxPayerId: req.params.taxID,
+      _id: new ObjectID(loggedInUser)
+    }, { password: 0 });
     if (!user) {
       return res.status(400).json({
         status: false,
