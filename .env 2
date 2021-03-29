@@ -1,0 +1,5 @@
+CONNECTIONSTRING=mongodb+srv://martison-schiff:ngSf6XwnbqVEuv7C@cluster0-imb1c.mongodb.net/paytax?retryWrites=true&w=majority
+JWTSECRET=paytaxapp-secret-key
+PAYSTACK_SECRET_KEY=sk_test_50c95c6d4ebb739f1e96963f0816b7a0eb0b5ca2
+SENDGRID_API_KEY=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
+PORT=3000

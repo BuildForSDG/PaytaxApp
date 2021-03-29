@@ -46,8 +46,8 @@
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.2.1",
     "moment": "^2.26.0",
-    "mongodb": "^3.6.5",
-    "mongoose": "^5.12.2",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.9",
     "pdfkit": "^0.11.0",
     "save": "^2.4.0",
     "validator": "^13.0.0"
