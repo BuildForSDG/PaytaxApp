@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const mongodb = require('mongodb');
 
-console.log(process.env.CONNECTIONSTRING);
+console.log(process.env);
 
 mongodb.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
   if (err) {
