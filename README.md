@@ -16,7 +16,7 @@ In developing countries and under developed countries, such as many african coun
 
 Data collection in most cases is quite frankly for the government and the society at large as this can contribute immensely to economic growth and developement.
 
-When a government or society is able to have at leat over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
+When a government or society is able to have at least over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
 
 This is what has brought about this proposed system, which is geared towards collection of individual data of working citizens, business owners and industries which inturn will monitor tax payment and other internal generated revenue.
 
