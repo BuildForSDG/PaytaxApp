@@ -49,6 +49,7 @@ If every Nigerian is made to see the importance of tax payment, and the sustaina
 ## USAGE
 
 ### API guide for consuming this back-end layer
+## [POSTMAN API DOCUMENTAION](https://documenter.getpostman.com/view/6711768/TzCL99Gb)
 
 ## Individual businesses and Companies registration
 
