@@ -16,7 +16,7 @@ In developing countries and under developed countries, such as many african coun
 
 Data collection in most cases is quite frankly for the government and the society at large as this can contribute immensely to economic growth and developement.
 
-When a government or society is able to have at leat over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
+When a government or society is able to have at least over 80 percent of individual data, it will be able to know those that are employed and unemployed. An adequate data of it's employed citizens or business owners, will enable the governmet to monitor tax payers.
 
 This is what has brought about this proposed system, which is geared towards collection of individual data of working citizens, business owners and industries which inturn will monitor tax payment and other internal generated revenue.
 
@@ -48,8 +48,10 @@ If every Nigerian is made to see the importance of tax payment, and the sustaina
 
 ## USAGE
 
-### API guide for consuming this back-end layer
+<!--- ### API guide for consuming this back-end layer --->
+## [POSTMAN API DOCUMENTAION](https://documenter.getpostman.com/view/6711768/TzCL99Gb)
 
+<!---
 ## Individual businesses and Companies registration
 
 Upon registration the Tax payer gets returned a Tax Payer ID by email and json response.
@@ -199,7 +201,7 @@ Accepts two body parameters:
 ```javascript
 const { income, taxPayerId } = req.body;
 ```
-
+--->
 ## Setup
 
 Install `npm` or `yarn` if you dont have any of them already installed. We recommend Yarn though.
@@ -224,7 +226,7 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 
 - Run your app in local dev mode: `yarn start`. This puts the bundled app in a `dist` folder, set up a local web server at localhost:3000, and continues to watch for your code changes which it syncs with the local server. This means if you loaded the app in a browser, it will auto-refresh as you code along. Feel free to use whatever bundler best meets your needs. Parcel was only added as a sample and for those looking for a simple but effective solution to the hassle of bundlers.
 
-## AUTHORS/TEAM-043 MEMBERS
+<!--- ## AUTHORS/TEAM-043 MEMBERS
 
 ![website](https://img.icons8.com/cute-clipart/64/000000/github.png)[Nextwebb](https://github.com/nextwebb 'github profile')
 ![website](https://img.icons8.com/fluent/64/000000/link.png)[Portfolio](https://nextwebb.com.ng/ 'portfolio website')
@@ -243,7 +245,7 @@ All tests should be written in the `**tests**' folder. There's a sample in there
 
 [![github profile](https://img.icons8.com/cute-clipart/64/000000/github.png)](https://github.com/Ebugo 'github profile')
 [![website](https://img.icons8.com/fluent/64/000000/globe.png)](https://gospel-chinyereugo.netlify.com/ 'portfolio website')
-[![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)](https://twitter.com/Codebug_ 'twitter profile') - Gospel Chinyerugo (Codebug) - Backend Developer
+[![twitter profile](https://img.icons8.com/fluent/48/000000/twitter.png)](https://twitter.com/Codebug_ 'twitter profile') - Gospel Chinyerugo (Codebug) - Backend Developer --->
 
 [Femi Akinsiku] - Team Program Assistant
 
@@ -260,7 +262,7 @@ First, you can send a mail to buildforsdg@andela.com to indicate your interest, 
 
 ## Acknowledgements
 
-Team -43 wants to explicitly thank Facebook and Andela for their support and assistance throughout this project. Special shoutout to Femi Akinsiku, for his assitance, patience and availability to help us through our difficulties.
+Team -43 wants to explicitly DSC SSA community for their support and assistance throughout this project. Special shoutout to Auwal MS, for all the tips and recommendations while building the solution.
 
 ## LICENSE
 
