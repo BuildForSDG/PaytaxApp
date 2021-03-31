@@ -1,9 +1,9 @@
 /* eslint-disable linebreak-style */
-const cors = require('cors');
+// const cors = require('cors');
 const router = require('express').Router();
 const usersController = require('../controllers/usersController');
 
-router.use(cors());
+// router.use(cors());
 
 router.post('/register', usersController.registeration); // sent taxId as email
 router.post('/login', usersController.login);
