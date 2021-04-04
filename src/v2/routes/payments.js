@@ -18,6 +18,6 @@ router.post('/history', usersController.mustBeLoggedIn, paymentsController.addPa
 router.post('/payment_income_tax', paymentsController.paymentIncomeTax);
 
 // insecure routes needs to be protected
-router.get('/receipt', paymentsController.paymentReceipt);
+router.get('/receipt', usersController.mustBeLoggedIn, paymentsController.paymentReceipt);
 
 module.exports = router;
